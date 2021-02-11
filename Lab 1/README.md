@@ -59,10 +59,13 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 To stage the interaction with your interactive device, think about:
 
 _Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
+This interaction is happening in a space with a desk and accompanying chair, such as an office (either at home or in a workplace), a coworking space, or a general living area. Since the interaction is utilizing a desk lamp, this device can be used during the workday at an office or workplace or at the end of the workday if it's in a home or living space.
 
 _Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
+This interaction involves the person whose desk the lamp is sitting on, and the room can contain any other parties they may be directly or indirectly in contact with. This can include coworkers and clients (especially in a work environment) or family and friends (especially in a living space). The core assumption is that this lamp will be used on a one-person desk space, so the desk chair will be directly correlated with the desk lamp. However, in a co-working space or open office, there is the possibility that the desk lamp can be moved to another area or even simply pointed in a direction not facing the desk chair connected to the lamp. In this case, someone sitting in the desk chair will trigger the lamp to turn on in another area or configuration. This can be solved with sensors in both the lamp and the desk chair to have more redundancy in checking if a person has sat down (a weight sensor in the desk chair) and if they're in front of the corresponding lamp (a proximity sensor on the lamp). 
 
 _Activity:_ What is happening between the actors?
+
 
 _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
 
