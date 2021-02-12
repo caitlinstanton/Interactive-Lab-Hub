@@ -2,37 +2,11 @@
 
 # Staging Interaction
 
-In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
-
-There is no actor that plays Tinkerbell--her existence in the play comes from the interactions that the other characters have with her.
-
-
-
-For lab this week, we draw on this and other inspirations from theatre to stage interactions with a device where the main mode of display/output for the interactive device you are designing is lighting. You will plot the interaction with a storyboard, and use your computer and a smartphone to experiment with what the interactions will look and feel like. _Make sure you read all the instructions and understand the whole of the laboratory activity before starting!_
-
-
-
 ## Prep
-
-1. Set up [your Github "Lab Hub" repository](../../../) by [following these instructions](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2021Spring/readings/Submitting%20Labs.md).
-2. Set up the README.md for your Hub repository (for instance, so that it has your name and points to your own Lab 1) and [learn how](https://guides.github.com/features/mastering-markdown/) to post links to your submissions on your readme.md so we can find them easily.
 
 ### For lab, you will need:
 
-1. Paper
-1. Markers/ Pen
-1. Smart Phone--Main required feature is that the phone needs to have a browser and display a webpage.
-1. Computer--we will use your computer to host a webpage which also features controls
-1. Found objects and materials--you’ll have to costume your phone so that it looks like some other device. These materials can include doll clothes, a paper lantern, a bottle, human clothes, a pillow case. Be creative!
-1. Scissors
-
 ### Deliverables for this lab are: 
-1. Storyboard
-1. Sketches/photos of costumed device
-1. Any reflections you have on the process.
-1. Video sketch of the prototyped interaction.
-1. Submit these in the lab1 folder of your class [Github page], either as links or uploaded files. Each group member should post their own copy of the work to their own Lab Hub, even if some of the work is the same for each person in the group.
-
 
 ## Overview
 For this assignment, you are going to 
@@ -56,51 +30,42 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 ## Part A. Plan 
 
-To stage the interaction with your interactive device, think about:
-
-_Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
-
-_Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
-
-_Activity:_ What is happening between the actors?
-
-_Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
-
-The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 **Describe your setting, players, activity and goals here.**
+
+My interactive device is a natural light desk lamp, crafted to provide a light source appropriately colored by the time of day. It will only turn on when needed by the person whose desk it sits on. This will be confirmed by connecting the lamp to an accompanying desk chair, both of which will have sensors embedded within them. A real-time clock will be tasked with determining what color light to use: earlier times will have cool-toned light, while later in the day will have warm-tone light.
 
 This interaction is happening in a space with a desk and accompanying chair, such as an office (either at home or in a workplace), a coworking space, or a general living area. Since the interaction is utilizing a desk lamp, this device can be used during the workday at an office or workplace or at the end of the workday if it's in a home or living space.
 
-This interaction involves the person whose desk the lamp is sitting on, and the room can contain any other parties they may be directly or indirectly in contact with. This can include coworkers and clients (especially in a work environment) or family and friends (especially in a living space). The core assumption is that this lamp will be used on a one-person desk space, so the desk chair will be directly correlated with the desk lamp. However, in a co-working space or open office, there is the possibility that the desk lamp can be moved to another area or even simply pointed in a direction not facing the desk chair connected to the lamp. In this case, someone sitting in the desk chair will trigger the lamp to turn on in another area or configuration. This can be solved with sensors in both the lamp and the desk chair to have more redundancy in checking if a person has sat down (a weight sensor in the desk chair) and if they're in front of the corresponding lamp (a proximity sensor on the lamp). 
+The room may contain many people, but the main actor in question is the person whose desk the lamp is sitting on. Coworkers and clients (especially in a work environment) or family and friends (especially in a living space) may be occupying the room as well, depending on its size and furniture layout. 
 
 The person who's directly interacting with the lamp is going to do some work at their desk. They will sit down at their desk chair, pull themselves closer to the desk, and begin working; this will turn on the lamp to assist with lighting any work they're doing. Other people in the room may be milling about, talking with the main actor, or doing their own work, but they will not be directly interacting with both the chair and the lamp unless they intend to do work at this desk.
 
-The goal of the person directly interacting with the lamp are to complete work at their desk without eye strain. The presence of the light and its shift from blue-toned light to warmer-toned light will especially help during less naturally lit times of day.
+The goal of the person directly interacting with the lamp is to complete work at their desk without eye strain. The presence of the light and its shift from cool-toned light to warmer-toned light will especially help during less naturally lit times of day.
 
 Sketch a storyboard of the interactions you are planning. It does not need to be perfect, but must get across the behavior of the interactive device and the other characters in the scene. 
 **Include a picture of your storyboard here**
 
 Present your idea to the other people in your breakout room. You can just get feedback from one another or you can work together on the other parts of the lab.
 **Summarize feedback you got here.**
-
+The original premise involved the lamp turning off and on like a normal desk lamp, except with the added feature that the user wouldn't have to turn it on manually. The people in my breakout room (Priya Kattappurath, Jacob Rauch, Luca Spinazzola) encouraged added more interesting elements to it, particularly with color and sound. That's how I brainstormed the feature of differently toned light based on the time of day, since people are more apt to want warmer-toned light closer to nighttime so as to prevent eye strain directly before winding down for bed. At first I thought about using a light sensor to help determine what level of light the lamp should be on, but I realized that wouldn't be useful in situations when it's darker during the middle of the day (i.e. a storm) or in rooms that aren't naturally lit (since artifical light tends to be at the same strength no matter the time of day, especially in an office). A real-time clock could be loaded onto the microcontroller for this interactive device and an API tracking the sunset/sunrise of the location of the lamp could be used instead.
 
 ## Part B. Act out the Interaction
 
-Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
-
 **Are there things that seemed better on paper than acted out?**
+
+At first, the idea was that the lamp would turn on when the desk chair was compressed with weight, indicating a person was sitting down in it and ready to work. When I stood to get up, I remembered that I often use my chair to hold boxes, bags, and other items temporarily, that my chair is used for a combination of storage and sitting. Having a weight sensor alone wouldn't account for that because the weight of a box could trigger it just the same as a person, and it felt sort of invasive to have to input your weight for a desk lamp device to turn on. At least another sensor needed to be added in order to work around this use case for the desk chair.
 
 **Are there new ideas that occur to you or your collaborators that come up from the acting?**
 
+The original assumption was that this lamp will be used on a one-person desk, so the desk chair will be directly correlated with the desk lamp. However, in a co-working space or open office, there is the possibility that the desk lamp can be moved to another area or even simply pointed in a direction not facing the desk chair. In this case, someone sitting in the desk chair will trigger the lamp to turn on in another area or configuration. This can be solved with sensors in both the lamp and the desk chair to have more redundancy in checking if a person has sat down (a weight sensor in the desk chair) and if they're in front of the corresponding lamp (a proximity sensor on the lamp). 
 
 ## Part C. Prototype the device
 
-You will be using your smartphone as a stand-in for the device you are prototyping. You will use the browser of your smart phone to act as a “light” and use a remote control interface to remotely change the light on that device. 
-
-Code for the "Tinkerbelle" tool, and instructions for setting up the server and your phone are [here](https://github.com/FAR-Lab/tinkerbelle).
-
-We invented this tool for this lab! 
 **Give us feedback on Tinkerbelle.**
+
+Unfortunately, I wasn't able to use the Tinkerbelle tool. I installed the requirements.txt items using pip3 and checked that I had a version of Python 3 installed before running python3 tinker.py. The IP address and debugging statements would print to the console, but going to http://localhost:5000 or http://192.168.1.13:5000 didn't load the page at all on my desktop or my phone. I changed the port number to 8888 in the case that another program was using 5000, but that didn't solve the problem. Other students recommended restarting the computer or downgrading to another version of Python 3 (or even Python 2) but now of these fixes worked. 
+
+Thankfully, Priya Kattappurath is also taking the class. She's one of my friends and is currently in Ithaca so I was able to use her functional Tinkerbelle app for additional prototyping and the final video of my interactive device. 
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
