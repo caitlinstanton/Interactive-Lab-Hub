@@ -96,7 +96,7 @@ Think about the setting of the device: is the environment a place where the devi
 
 **Take a video of your prototyped interaction.**
 
-[Final Interation](https://youtu.be/dxMwPZV3G44)
+[Final Interaction](https://youtu.be/dxMwPZV3G44)
 
 **Please indicate anyone you collaborated with on this Lab.**
 
