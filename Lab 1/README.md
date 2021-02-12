@@ -66,7 +66,7 @@ The original assumption was that this lamp will be used on a one-person desk, so
 
 Unfortunately, I wasn't able to use the Tinkerbelle tool. I installed the requirements.txt items using pip3 and checked that I had a version of Python 3 installed before running python3 tinker.py. The IP address and debugging statements would print to the console, but going to http://localhost:5000 or http://192.168.1.13:5000 didn't load the page at all on my desktop or my phone. 
 
-[Terminal printout](terminal.png)
+![Terminal printout](terminal.png)
 
 I changed the port number to 8888 in the case that another program was using 5000, but that didn't solve the problem. Other students recommended restarting the computer or downgrading to another version of Python 3 (or even Python 2) but now of these fixes worked. 
 
