@@ -41,7 +41,10 @@ The person who's directly interacting with the lamp is going to do some work at 
 The goal of the person directly interacting with the lamp is to complete work at their desk without eye strain. The presence of the light and its shift from cool-toned light to warmer-toned light will especially help during less naturally lit times of day.
 
 **Include a picture of your storyboard here**
-![Storyboard](Storyboard.pdf)
+
+Below is a storyboard of the various scenarios people could find themselves in with my proposed device. I'll go through them from the top down, left to right. The first cube shows an empty room; the lamp is off because there is nobody present currently triggering the sensor. The next cube shows a room with people in it, but again the light is off because nobody is triggering the sensor. The third cube shows someone sitting in the desk chair, triggering the weight sensor, but the light is off; this is a scenario where the person isn't close enough to the desk to need the lamp. This scenario was something that I used to improve the device to include a secondary sensor—a proximity sensor—embedded in the base of the lamp so as to ensure someone is sitting at the desk, not just in the chair, for it to turn on. A zoom in shows thisproposed sensor layout: a proximity sensor in the base of the lamp and a weight sensor in the desk chair. The next cube shows the lamp still off because both sensors aren't triggered; in this case, the person is close enough to the desk to trigger the proximity sensor, but not the weight sensor. The last cube shows the lamp on because the person is sitting in the chair and at the desk, therefore meeting the requirements to indicate that the desk is being used.
+
+![Storyboard](Storyboard.jpg)
 
 **Summarize feedback you got here.**
 
