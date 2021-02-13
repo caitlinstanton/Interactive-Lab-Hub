@@ -85,18 +85,30 @@ Now, change the goal within the same setting, and update the interaction with th
 
 ## Part E. Costume the device
 
-Only now should you start worrying about what the device should look like. Develop a costume so that you can use your phone as this device.
-
-Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
-
 **Include sketches of what your device might look like here.**
 
+Here is a sketch of the device; note that it encompasses two parts: a lamp and a desk chair. The lamp contains the main microcontroller responsible for turning the bulb on/off, changing the color of the light based on the real-time clock readout, receiving information from the directly connected proximity sensor, and receiving information from the desk chair. The desk chair has a smaller microcontroller embedded in the seat, along with a weight sensor. This microcontroller will be connected to the main one via WiFi or Bluetooth in order to send readings from the weight sensor.
+
+![Costume](Costume.jpg)
+
 **What concerns or opportunitities are influencing the way you've designed the device to look?**
+
+Not much about the lamp's appearance is changed besides the addition of the proximity sensor. It's placed at the front of the base with the assumption that the majority of people will have their lamp facing forwards (as the back is typically where the power cord is connected and most people keep that hidden). 
+
+The desk chair, however, provides multiple possible sensor orientations and their accompanying pros and cons. If the microcontroller and weight sensor are placed in the seat of the chair, the sensor will always be triggered when something/someone is in the chair but the embedded system has a higher risk of overheating or being crushed. If the embedded system is in the back of the chair, the weight sensor will only be triggered if someone leans against the back of the chair, but the system is at less of a risk of being crushed or overheating. Ultimately the former location was chosen to ensure that the weight sensor will be triggered when someone sits in the chair. 
+
+Due to the fact that this is a two-piece device, there are considerations regarding power and communication. The lamp's microcontroller and sensor can be powered by the same voltage that powers the lightbulb, but needing the desk chair to be plugged into the wall isn't convenient. A solution is to include a battery along with the microcontroller and weight sensor in the seat of the chair. The battery would need to be durable enough to not be prone to leakage from weight being placed upon it or heating up, as well as high enough in voltage to supply the embedded system with power for a long time. A workaround for longer endurance would be making the embedded system as low power as possible by utilizing a small low-power IoT microcontroller and small weight sensor, a Bluetooth communication protocol (since WiFi requires more power for its acknowledgement packets when connecting and transmitting/receiving information), and providing functionality for a sleep mode to be enabled if the weight sensor hasn't been triggered in a certain amount of time.
+
+Since a desk is a place that people use to do a number of things, waterproofing the desk chair (especially if the desk chair is made of breathable cloth) is necessary to keep the embedded system safe. The lamp is less of a concern because a basic lamp has a plastic or metal base to keep electronics enclosed already.
+
+There's no need for the sensors to be brightly colored or have specific textures or use any sort of sensory design to alert the user of their presence because they're embedded in other devices and will remain hidden.
 
 
 ## Part F. Record
 
 **Take a video of your prototyped interaction.**
+
+Below is the link to a video explaining the functionality of the proposed device. It goes over how the lamp turns on/off and what basic technology/sensors are involved.
 
 [Final Interaction](https://youtu.be/dxMwPZV3G44)
 
