@@ -1,5 +1,3 @@
-
-
 # Staging Interaction
 
 ## Prep
@@ -42,10 +40,9 @@ The person who's directly interacting with the lamp is going to do some work at 
 
 The goal of the person directly interacting with the lamp is to complete work at their desk without eye strain. The presence of the light and its shift from cool-toned light to warmer-toned light will especially help during less naturally lit times of day.
 
-Sketch a storyboard of the interactions you are planning. It does not need to be perfect, but must get across the behavior of the interactive device and the other characters in the scene. 
 **Include a picture of your storyboard here**
+![Storyboard](Storyboard.jpg)
 
-Present your idea to the other people in your breakout room. You can just get feedback from one another or you can work together on the other parts of the lab.
 **Summarize feedback you got here.**
 
 The original premise involved the lamp turning off and on like a normal desk lamp, except with the added feature that the user wouldn't have to turn it on manually. The people in my breakout room (Priya Kattappurath, Jacob Rauch, Luca Spinazzola) encouraged added more interesting elements to it, particularly with color and sound. That's how I brainstormed the feature of differently toned light based on the time of day, since people are more apt to want warmer-toned light closer to nighttime so as to prevent eye strain directly before winding down for bed. At first I thought about using a light sensor to help determine what level of light the lamp should be on, but I realized that wouldn't be useful in situations when it's darker during the middle of the day (i.e. a storm) or in rooms that aren't naturally lit (since artifical light tends to be at the same strength no matter the time of day, especially in an office). A real-time clock could be loaded onto the microcontroller for this interactive device and an API tracking the sunset/sunrise of the location of the lamp could be used instead.
