@@ -41,7 +41,7 @@ The person who's directly interacting with the lamp is going to do some work at 
 The goal of the person directly interacting with the lamp is to complete work at their desk without eye strain. The presence of the light and its shift from cool-toned light to warmer-toned light will especially help during less naturally lit times of day.
 
 **Include a picture of your storyboard here**
-![Storyboard](Storyboard.jpg)
+![Storyboard](Storyboard.pdf)
 
 **Summarize feedback you got here.**
 
