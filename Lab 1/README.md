@@ -1,11 +1,5 @@
 # Staging Interaction
 
-## Prep
-
-### For lab, you will need:
-
-### Deliverables for this lab are: 
-
 ## Overview
 For this assignment, you are going to 
 
@@ -20,11 +14,6 @@ D) [Wizard the device](#part-d-wizard-the-device)
 E) [Costume the device](#part-e-costume-the-device)
 
 F) [Record the interaction](#part-f-record)
-
-## The Report
-This readme.md page in your own repository should be edited to include the work you have done. You can delete everything but the headers and the sections between the **stars**. Write the answers to the questions under the starred sentences. Include any material that explains what you did in this lab hub folder, and link it in the readme.
-
-Labs are due on Mondays. Make sure this page is linked to on your main class hub page.
 
 ## Part A. Plan 
 
@@ -75,11 +64,12 @@ Thankfully, Priya Kattappurath is also taking the class. She's one of my friends
 ![Launched Tinkerbelle](server.png)
 
 ## Part D. Wizard the device
-Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 **Include your first attempts at recording the set-up video here.**
 
-Now, change the goal within the same setting, and update the interaction with the paper prototype. 
+As detailed above, Tinkerbelle wasn't able to run on my device in order to control my phone from my computer. However, I was able to work with Priya to film my final video, and was able to see it in action. Here is Priya's video illustrating how the setup worked.
+
+[Tinkerbelle Set-Up (Priya Kattappurath)](https://www.youtube.com/watch?v=0xtSLiDrbS4)
 
 **Show the follow-up work here.**
 
