@@ -116,9 +116,15 @@ This describes the second week's work for this lab activity.
 You will be assigned three partners from another group. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
 
 **Summarize feedback from your partners here.**
-hey caitlin! cool product with how it's related to natural lighting (and awesome video haha).  Some feedback is maybe integrating certain modes that help the person wake up earlier or go to sleep earlier whether that is flashing its lights to indicate that so the person is forced to just start work early or end work early
+Grace: hey caitlin! cool product with how it's related to natural lighting (and awesome video haha).  Some feedback is maybe integrating certain modes that help the person wake up earlier or go to sleep earlier whether that is flashing its lights to indicate that so the person is forced to just start work early or end work early
 
 ^just a thought/idea cuz low key need that in my life rn haha
+
+Sujith: Hey Caitlin I looked through your Github page and I thought your idea was really cool. I thought it could also be neat if you could implement a mood based lighting scheme as well. So if a person is super anxious for instance, maybe the light could change to a cooler tone to help calm the person down.
+
+Priya: feedback!: kinda of an idea for an extension to your idea, that could be used in an office-type space, would be if the intensity of the light changes based on how busy/available the person is. So during the day the light would still change from cooler to warmer tones, but would be less bright if the person is super busy and has alot of deadlines or something the light is dimmer so other people in the office know to not bother them
+
+Erin: The video is very clear about the goals and the activities. I really like your idea of changing the light color based on a real-time clock. To build upon this project, one thing I can think of is to add voice control to manually change the colors of the light or to turn on/off the light, and use gesture control to change the light intensity.
 
 ## Make it your own
 
