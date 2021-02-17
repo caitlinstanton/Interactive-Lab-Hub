@@ -167,4 +167,4 @@ Do last week’s assignment again, but this time:
 **Document everything here.**
 
 - Increase brightness based on gesture
-- Connect with Google Calendar/Outlook Calendar/etc to alert the user to upcoming events (blink light as a "warning bell" with 5 minutes left until the end of the meeting" and then bleep at the end of the meeting; should it be before meetings? at the end? both?)
+- Connect with Google Calendar/Outlook Calendar/etc to alert the user to upcoming events (blink light as a "warning bell" with 5 minutes left until the end of the meeting" and then bleep at the end of the meeting; should it be before meetings? at the end? both? bleep for 5 minutes left, bloop for ending, silent mode for blinking to indicate meetings)
