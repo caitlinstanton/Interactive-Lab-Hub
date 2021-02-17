@@ -123,7 +123,7 @@ Sujith Naapa Ramesh said: "I looked through your Github page and I thought your 
 
 Priya Kattappurath said: "An idea for an extension to your idea, that could be used in an office-type space, would be if the intensity of the light changes based on how busy/available the person is. So during the day the light would still change from cooler to warmer tones, but would be less bright if the person is super busy and has alot of deadlines or something the light is dimmer so other people in the office know to not bother them."
 
-Erin Gong: "The video is very clear about the goals and the activities. I really like your idea of changing the light color based on a real-time clock. To build upon this project, one thing I can think of is to add voice control to manually change the colors of the light or to turn on/off the light, and use gesture control to change the light intensity."
+Erin Gong said: "The video is very clear about the goals and the activities. I really like your idea of changing the light color based on a real-time clock. To build upon this project, one thing I can think of is to add voice control to manually change the colors of the light or to turn on/off the light, and use gesture control to change the light intensity."
 
 ## Make it your own
 
