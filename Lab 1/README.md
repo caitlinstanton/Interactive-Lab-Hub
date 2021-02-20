@@ -174,7 +174,7 @@ The notifications use both sound and light, although a 'silent mode' can be acti
 
 Here is an additional storyboard demonstrating gesture control for light intensity and event reminders. This is meant to be combined with the original storyboard from above:
 
-![Additional Storyboard](Revised Storyboard.jpg)
+![Additional Storyboard](Revised_Storyboard.jpg)
 
 Below is a demo of the finalized prototype that includes the color-changing light, gesture control, and event notification system:
 
