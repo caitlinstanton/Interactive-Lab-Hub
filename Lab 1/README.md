@@ -172,6 +172,10 @@ Another common thread was using the lamp to keep track of time, whether it was t
 
 The notifications use both sound and light, although a 'silent mode' can be activated that mutes the sound if the user is in a quieter space. Relying on sight and sound for event reminders not only can make the user more aware of their schedule, but also provides more accessibility to those who may be hearing or sight impaired. The 'warning bell' sound differs from that of the 'starting/ending bell' so the user is able to determine how much time they have left for their calendar event. Originally different sounds for the start and end of events were going to be used, but having four different sounds would be too confusing for the user and provide little benefit.
 
+Here is an additional storyboard demonstrating gesture control for light intensity and event reminders. This is meant to be combined with the original storyboard from above:
+
+![Additional Storyboard](Revised Storyboard.jpg)
+
 Below is a demo of the finalized prototype that includes the color-changing light, gesture control, and event notification system:
 
 [Revised Demo](https://www.youtube.com/watch?v=ap8SkFYk4FQ)
