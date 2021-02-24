@@ -1,2 +1,21 @@
 # Parts list inventory
 
+- Pi 4 case (red/white)
+- CanaKit USB-C power supply
+- Adafruit MPR121 Gator QT
+- USB MINI microphone
+- SD/MMC/MicroSD card reader/writer
+- Raspberry Pi Camera v2
+- Raspberry Pi 4 Computer Model B (4GB RAM)
+- SparkFun QWIIC button (red LED)
+- SparkFun QWIIC joystick
+- Adafruit APDS9960 breakout STEMMA QT
+- Adafruit MPU-6050 STEMMA QT
+- QWIIC cables
+- 32GB microSD card
+- SparkFun QWIIC Twist RGB rotary encoder
+- Adafruit mini PiTFT
+- Magnetic strip tape
+- Smart plug
+- SparkFun QWIIC button (green LED)
+- Alligator clips
