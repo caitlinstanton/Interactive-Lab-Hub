@@ -87,6 +87,7 @@ The original assumption was that this lamp will be used on a one-person desk, so
 
 Unfortunately, I wasn't able to use the Tinkerbelle tool. I installed the requirements.txt items using pip3 and checked that I had a version of Python 3 installed before running python3 tinker.py. The IP address and debugging statements would print to the console, but going to http://localhost:5000 or http://192.168.1.13:5000 didn't load the page at all on my desktop or my phone. 
 
+<<<<<<< HEAD
 ![Terminal printout](terminal.png)
 
 I changed the port number to 8888 in the case that another program was using 5000, but that didn't solve the problem. Other students recommended restarting the computer or downgrading to another version of Python 3 (or even Python 2) but now of these fixes worked. 
@@ -94,6 +95,13 @@ I changed the port number to 8888 in the case that another program was using 500
 Thankfully, Priya Kattappurath is also taking the class. She's one of my friends and is currently in Ithaca so I was able to use her functional Tinkerbelle app for additional prototyping and the final video of my interactive device. This screenshot of the launched web server was successfully grabbed from her desktop running Tinkerbelle.
 
 ![Launched Tinkerbelle](server.png)
+=======
+We invented this tool for this lab! 
+
+If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
+
+**Give us feedback on Tinkerbelle.**
+>>>>>>> fa2d4aa13a1422af1cf3c83e8d10db3f2dface0e
 
 ## Part D. Wizard the device
 
@@ -164,6 +172,7 @@ Do last week’s assignment again, but this time:
 2) You can use any modality (e.g., vibration, sound) to prototype the behaviors, 
 3) We will be grading with an emphasis on creativity. 
 
+<<<<<<< HEAD
 **Document everything here.**
 
 Based on feedback I received, the first feature to incorporate was regulating the intensity of the light. Dimmers are used to adjust the amount of light entering a space, so it correlates well with the full intention of the lamp. Rather than add a button to its already-clean interface, the lamp utilizes gesture control to make the light brighter or dimmer. The proximity sensor already embedded in the base of the lamp can be used for this, and additional proximity sensors can be used to track the gesture's path accordingly. Moving your hand in an upward motion will make the light brighter, and moving your hand down will make it dimmer. Longer gestures or repeated gestures will adjust the intensity of the light even more, i.e. multiple upward motions or a longer upward motion will make the light even brighter.
@@ -179,3 +188,6 @@ Here is an additional storyboard demonstrating gesture control for light intensi
 Below is a demo of the finalized prototype that includes the color-changing light, gesture control, and event notification system:
 
 [Revised Demo](https://www.youtube.com/watch?v=ap8SkFYk4FQ)
+=======
+**Document everything here. (Particularly we'd like to see the storyboard and video, although photos of the prototype are also great.)**
+>>>>>>> fa2d4aa13a1422af1cf3c83e8d10db3f2dface0e
