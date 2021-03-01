@@ -62,13 +62,21 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+def bcd(digits):
+    def bcdigit(d):
+       return (bin(d)[2:].rjust(4,'0'))
+    return ((bcdigit(int(d)) for d in digits))
+
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
+    #convert to binary 
+    bcdval = repr( bcd(strftime('%H%M%S')))
+
     #TODO: fill in here. You should be able to look in cli_clock.py and stats.py 
     y = top
-    draw.text((x,y),strftime('%m/%d/%y %H:%M:%S'),font=font,fill="#FFFFFF")
+    draw.text((x,y),bcdval,font=font,fill="#FFFFFF")
 
 
     # Display image.
