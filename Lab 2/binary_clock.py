@@ -4,8 +4,10 @@ import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
+from adafruit_rgb_display.rgb import color565
 from time import strftime, sleep
-
+from itertools import zip_longest
+import webcolors
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.CE0)
@@ -30,6 +32,15 @@ disp = st7789.ST7789(
     x_offset=53,
     y_offset=40,
 )
+
+# these setup the code for our buttons and the backlight and tell the pi to treat the GPIO pins as digitalIO vs analogIO
+backlight = digitalio.DigitalInOut(board.D22)
+backlight.switch_to_output()
+backlight.value = True
+buttonA = digitalio.DigitalInOut(board.D23)
+buttonB = digitalio.DigitalInOut(board.D24)
+buttonA.switch_to_input()
+buttonB.switch_to_input()
 
 # Create blank image for drawing.
 # Make sure to create image with mode 'RGB' for full color.
@@ -62,15 +73,38 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+def bcd(digits):
+    def bcdigit(d):
+       return (bin(d)[2:].rjust(4,'0'))
+    return ((bcdigit(int(d)) for d in digits))
+
+def vertical_strings(strings):
+    'Orient an iterable of strings vertically: one string per column.'
+    iters = [iter(s) for s in strings]
+    concat = ''.join
+    return '\n'.join(map(concat,
+                         zip_longest(*iters, fillvalue=' ')))
+
+# get a color from the user
+screenColor = None
+while not screenColor:
+    try:
+        # get a color from the user and convert it to RGB
+        screenColor = color565(*list(webcolors.name_to_rgb(input('Type the name of a color and hit enter: '))))
+    except ValueError:
+        # catch colors we don't recognize and go again
+        print("whoops I don't know that one")
+
 while True:
     # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
+    
+    #convert to binary
+    bcdval = vertical_strings(bcd(strftime('%H%M%S')))
 
-    #TODO: fill in here. You should be able to look in cli_clock.py and stats.py 
     y = top
-    draw.text((x,y),strftime('%m/%d/%y %H:%M:%S'),font=font,fill="#FFFFFF")
-
-
+    draw.text((x,y),bcdval,font=font,fill="#FFFFFF")
+    
     # Display image.
     disp.image(image, rotation)
     time.sleep(1)

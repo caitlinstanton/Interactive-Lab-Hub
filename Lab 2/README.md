@@ -152,15 +152,27 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
+Here's a working version of the piTFT text clock:
+
+![Text clock](https://youtu.be/zshAuEnRCOE)
+
 **A copy of your code should be in your Lab 2 Github repo.**
+
+I made a binary clock where the user can change the background color (to some extent). The binary clock conversion function is based on code from ![this repo](https://gist.github.com/psimonyi/2856099). The user input for background color is from `screen_test.py`, but is slightly different in that the piTFT doesn't listen to the user directly. Instead it displays a background that's the opposite color on the color wheel, i.e. an input of red will show green. This clock keeps the user on their toes, both with the binary conversion and the reverse coloring.
 
 ## Part F. 
 ## Make a short video of your modified barebones PiClock
 
 **Take a video of your PiClock.**
 
+Here's a video of the final product: ![wacky binary clock](https://youtu.be/pcTb6At5QW4)
+
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+
+I'd like to incorporate the buttons to allow the user to toggle to a normal clock display if the binary clock gets a little tiring. I'd also potentially like a normal coloring scheme as well, so the user can legitimately configure the background color of the piTFT. Lastly, I'd like to make the binary clock more visually appealing with symbols rather than text, as seen in the example picture below:
+
+![Binary Clock](binaryclock.JPEG)
 
 
 
