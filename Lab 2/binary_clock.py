@@ -2,7 +2,7 @@ import time
 import subprocess
 import digitalio
 import board
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageColor
 import adafruit_rgb_display.st7789 as st7789
 from adafruit_rgb_display.rgb import color565
 from time import strftime, sleep
@@ -90,7 +90,7 @@ screenColor = None
 while not screenColor:
     try:
         # get a color from the user and convert it to RGB
-        screenColor = color565(*list(webcolors.name_to_rgb(input('Type the name of a color and hit enter: '))))
+        screenColor = ImageColor.getrgb(input('Type the name of a color and hit enter: '))
     except ValueError:
         # catch colors we don't recognize and go again
         print("whoops I don't know that one")
