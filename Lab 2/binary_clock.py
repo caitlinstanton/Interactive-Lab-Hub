@@ -44,10 +44,10 @@ buttonB.switch_to_input()
 
 # Create blank image for drawing.
 # Make sure to create image with mode 'RGB' for full color.
-height = disp.height  
-width = disp.width
-image = Image.new("RGB", (width,height))
-rotation = 180
+height = disp.width  # we swap height/width to rotate it to landscape!
+width = disp.height
+image = Image.new("RGB", (width, height))
+rotation = 90
 
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
@@ -66,7 +66,10 @@ x = 0
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the
 # same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
+regSize = 30
+regFont = ImageFont.truetype("baby blocks.ttf", regSize)
+binarySize = 40
+binaryFont = ImageFont.truetype("3Dventure.ttf", binarySize)
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
@@ -102,18 +105,17 @@ while True:
     if buttonB.value and not buttonA.value:  # just button A pressed
         # Draw a black filled box to clear the image.
         draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
-        
         #convert to binary
         bcdval = vertical_strings(bcd(strftime('%H%M%S')))
-
+        x = (width/2) - (binarySize * 1.8)
         y = top
-        draw.text((x,y),bcdval,font=font,fill="#FFFFFF")
+        draw.text((x,y),bcdval,font=binaryFont,fill="#FFFFFF")
         disp.image(image, rotation)
     if buttonA.value and not buttonB.value:  # just button B pressed
         # Draw a black filled box to clear the image.
         draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
-        y = top
-        draw.text((x,y),strftime('%H%M%S'),font=font,fill="#FFFFFF")
+        y = (height/2)-(regSize/2)
+        draw.text((x,y),strftime('%H:%M:%S'),font=regFont,fill="#FFFFFF")
         disp.image(image, rotation)
     if not buttonA.value and not buttonB.value:  # none pressed
         display.fill(color565(0, 255, 0))  # green
