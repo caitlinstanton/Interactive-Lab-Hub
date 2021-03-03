@@ -44,10 +44,10 @@ buttonB.switch_to_input()
 
 # Create blank image for drawing.
 # Make sure to create image with mode 'RGB' for full color.
-height = disp.width  # we swap height/width to rotate it to landscape!
-width = disp.height
-image = Image.new("RGB", (width, height))
-rotation = 90
+height = disp.height  
+width = disp.width
+image = Image.new("RGB", (width,height))
+rotation = 180
 
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
@@ -94,17 +94,26 @@ while not screenColor:
     except ValueError:
         # catch colors we don't recognize and go again
         print("whoops I don't know that one")
-
 while True:
-    # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
-    
-    #convert to binary
-    bcdval = vertical_strings(bcd(strftime('%H%M%S')))
+    if buttonA.value and buttonB.value:
+        backlight.value = False  # turn off backlight
+    else:
+        backlight.value = True  # turn on backlight
+    if buttonB.value and not buttonA.value:  # just button A pressed
+        # Draw a black filled box to clear the image.
+        draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
+        
+        #convert to binary
+        bcdval = vertical_strings(bcd(strftime('%H%M%S')))
 
-    y = top
-    draw.text((x,y),bcdval,font=font,fill="#FFFFFF")
-    
-    # Display image.
-    disp.image(image, rotation)
-    time.sleep(1)
+        y = top
+        draw.text((x,y),bcdval,font=font,fill="#FFFFFF")
+        disp.image(image, rotation)
+    if buttonA.value and not buttonB.value:  # just button B pressed
+        # Draw a black filled box to clear the image.
+        draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
+        y = top
+        draw.text((x,y),strftime('%H%M%S'),font=font,fill="#FFFFFF")
+        disp.image(image, rotation)
+    if not buttonA.value and not buttonB.value:  # none pressed
+        display.fill(color565(0, 255, 0))  # green
