@@ -98,11 +98,11 @@ while not screenColor:
         # catch colors we don't recognize and go again
         print("whoops I don't know that one")
 while True:
-    if buttonA.value and buttonB.value:
+    if not buttonA.value and not buttonB.value:
         backlight.value = False  # turn off backlight
     else:
-        backlight.value = True  # turn on backlight
-    if buttonB.value and not buttonA.value:  # just button A pressed
+        backlight.value = True
+    if buttonA.value and buttonB.value:
         # Draw a black filled box to clear the image.
         draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
         #convert to binary
@@ -111,11 +111,17 @@ while True:
         y = top
         draw.text((x,y),bcdval,font=binaryFont,fill="#FFFFFF")
         disp.image(image, rotation)
-    if buttonA.value and not buttonB.value:  # just button B pressed
+    if buttonB.value and not buttonA.value:  # just button A pressed
         # Draw a black filled box to clear the image.
         draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
+        x = 0
         y = (height/2)-(regSize/2)
         draw.text((x,y),strftime('%H:%M:%S'),font=regFont,fill="#FFFFFF")
         disp.image(image, rotation)
-    if not buttonA.value and not buttonB.value:  # none pressed
-        display.fill(color565(0, 255, 0))  # green
+    if buttonA.value and not buttonB.value:  # just button B pressed
+        # Draw a black filled box to clear the image.
+        draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
+        x = 0
+        y = (height/2)-(regSize/2)
+        draw.text((x,y),strftime('%H:%M:%S'),font=regFont,fill="#FFFFFF")
+        disp.image(image, rotation)
