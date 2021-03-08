@@ -9,6 +9,16 @@ from time import strftime, sleep
 from itertools import zip_longest
 import webcolors
 
+import smbus, time
+bus = smbus.SMBus(1)
+addr = 0x20
+
+global state
+state = 0
+# 0 is middle state
+# 1 is left direction (for binary clock)
+# 2 is right direction (for normal clock)
+
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.CE0)
 dc_pin = digitalio.DigitalInOut(board.D25)
@@ -76,6 +86,18 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+try:
+    bus_data = bus.read_i2c_block_data(addr, 0x03, 5)
+    #X_MSB = bus.read_byte_data(addr, 0x03) # Reads MSB for horizontal joystick position
+    #X_LSB = bus.read_byte_data(addr, 0x04) # Reads LSB for horizontal joystick position
+
+    #Y_MSB = bus.read_byte_data(addr, 0x05) # Reads MSB for vertical joystick position
+    #Y_LSB = bus.read_byte_data(addr, 0x06) # Reads LSB for vertical joystick position
+
+    #Select_Button = bus.read_byte_data(addr, 0x07) # Reads button position
+except Exception as e:
+    print(e)
+
 def bcd(digits):
     def bcdigit(d):
        return (bin(d)[2:].rjust(4,'0'))
@@ -88,6 +110,61 @@ def vertical_strings(strings):
     return '\n'.join(map(concat,
                          zip_longest(*iters, fillvalue=' ')))
 
+def qwiicjoystick(curr):
+    try:
+        bus_data = bus.read_i2c_block_data(addr, 0x03, 5)
+        #X_MSB = bus.read_byte_data(addr, 0x03) # Reads MSB for horizontal joystick position
+        #X_LSB = bus.read_byte_data(addr, 0x04) # Reads LSB for horizontal joystick position
+    
+        #Y_MSB = bus.read_byte_data(addr, 0x05) # Reads MSB for vertical joystick position
+        #Y_LSB = bus.read_byte_data(addr, 0x06) # Reads LSB for vertical joystick position
+
+        #Select_Button = bus.read_byte_data(addr, 0x07) # Reads button position
+    except Exception as e:
+        print(e)
+
+    X = (bus_data[0]<<8 | bus_data[1])>>6
+    Y = (bus_data[2]<<8 | bus_data[3])>>6
+    
+    #print(X, Y, " Button = ", bus_data[4])
+    
+    time.sleep(.05)
+    
+    if curr == 0: #middle
+        if X < 450:
+            state = 2 #RIGHT
+        elif 575 < X:
+            state = 1 #LEFT
+        else:
+            state = 0
+    elif curr == 1: #left
+        if X < 450:
+            state = 0 #RIGHT
+        elif 575 < X:
+            state = 1 #LEFT
+        else:
+            state = 1
+    elif curr == 2:
+        if X < 450:
+            state = 2 #RIGHT
+        elif 575 < X:
+            state = 0 #LEFT
+        else:
+            state = 2
+    else:
+        state = 0
+    
+    # if Y< 450:
+    #     print("DOWN")
+    #     #direction = DOWN
+    # elif 575 < Y:
+    #     print("UP")
+    #     #direction = UP
+
+    #if Select_Button == 1:
+        #terminate()
+    return state
+
 # get a color from the user
 screenColor = None
 while not screenColor:
@@ -98,11 +175,16 @@ while not screenColor:
         # catch colors we don't recognize and go again
         print("whoops I don't know that one")
 while True:
+    state = qwiicjoystick(state)
     if not buttonA.value and not buttonB.value:
         backlight.value = False  # turn off backlight
     else:
         backlight.value = True
-    if buttonA.value and buttonB.value:
+    if state == 0: 
+        # Draw a black filled box to clear the image.
+        draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
+        disp.image(image, rotation)
+    if state == 1: 
         # Draw a black filled box to clear the image.
         draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
         #convert to binary
@@ -111,17 +193,17 @@ while True:
         y = top
         draw.text((x,y),bcdval,font=binaryFont,fill="#FFFFFF")
         disp.image(image, rotation)
-    if buttonB.value and not buttonA.value:  # just button A pressed
+    if state == 2: 
         # Draw a black filled box to clear the image.
         draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
         x = 0
         y = (height/2)-(regSize/2)
         draw.text((x,y),strftime('%H:%M:%S'),font=regFont,fill="#FFFFFF")
         disp.image(image, rotation)
-    if buttonA.value and not buttonB.value:  # just button B pressed
-        # Draw a black filled box to clear the image.
-        draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
-        x = 0
-        y = (height/2)-(regSize/2)
-        draw.text((x,y),strftime('%H:%M:%S'),font=regFont,fill="#FFFFFF")
-        disp.image(image, rotation)
+    # if buttonA.value and not buttonB.value:  # just button B pressed
+    #     # Draw a black filled box to clear the image.
+    #     draw.rectangle((0, 0, width, height), outline=0, fill=screenColor)
+    #     x = 0
+    #     y = (height/2)-(regSize/2)
+    #     draw.text((x,y),strftime('%H:%M:%S'),font=regFont,fill="#FFFFFF")
+    #     disp.image(image, rotation)
