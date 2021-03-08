@@ -9,35 +9,7 @@ It is worth spending a little time thinking about how you mark time, and what wo
 **Please indicate anyone you collaborated with on this Lab here.**
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
-## Prep
-
-[Lab prep](prep.md) is extra long this week! Make sure you read it over in time to prepare for lab on Wednesday.
-
-### Get your kit
-If you are overseas, you should have already ordered your parts.
-
-If you are remote but in the US, the teaching team mailed parts last week.
-
-If you are in New York, you can pick up your parts. If you have not picked up your parts by class you should come to Tata 351.
-
-### Set up your Lab 2
-
-1. [Pull changes from the Interactive Lab Hub](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2021Spring/readings/Submitting%20Labs.md#to-pull-lab-updates) so that you have your own copy of Lab 2 on your own lab hub. (This may have to be done again at the start of lab on Wednesday.)
-
-In terminal cd into your Interactive-Lab-Hub folder and run 
-
-```
-Interactive-Lab-Hub $ git remote add upstream https://github.com/FAR-Lab/Interactive-Lab-Hub.git
-Interactive-Lab-Hub $ git pull upstream Spring2021
-Interactive-Lab-Hub $ git add .
-Interactive-Lab-Hub $ git commit -m'merge'
-Interactive-Lab-Hub $ git push
-```
-
-Your local and remote should now be up to date with the most recent files.
-
-2. Go to the [lab prep page](prep.md) to inventory your parts and set up your Pi.
-
+I worked with Priya Kattapurath on this lab. We used pair programming every step of the way and took equal roles in debugging the software and hardware elements of this lab.
 
 ## Overview
 For this assignment, you are going to 
@@ -159,7 +131,9 @@ Here's a working version of the piTFT text clock:
 
 **A copy of your code should be in your Lab 2 Github repo.**
 
-I made a binary clock where the user can change the background color (to some extent). The binary clock conversion function is based on code from [this repo](https://gist.github.com/psimonyi/2856099). The user input for background color is from `screen_test.py`, but is slightly different in that the piTFT doesn't listen to the user directly. Instead it displays a background that's the opposite color on the color wheel, i.e. an input of red will show green. This clock keeps the user on their toes, both with the binary conversion and the reverse coloring.
+We made a binary clock where the user can change the background color (to some extent). The binary clock conversion function is based on code from [this repo](https://gist.github.com/psimonyi/2856099). The user input for background color is from `screen_test.py`, but is slightly different in that the piTFT doesn't listen to the user directly. Instead it displays a background that's the opposite color on the color wheel, i.e. an input of red will show green. This clock keeps the user on their toes, both with the binary conversion and the reverse coloring.
+
+The code for this can be found in `binaryclock_pt1.py`.
 
 ## Part F. 
 ## Make a short video of your modified barebones PiClock
@@ -183,15 +157,7 @@ I'd like to incorporate the buttons to allow the user to toggle to a normal cloc
 
 # Lab 2 Part 2
 
-Pull Interactive Lab Hub updates to your repo.
-
-Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required.
-
-As always, make sure you document contributions and ideas from others explicitly in your writeup.
-
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
-
-I worked alongside Priya Kattappurath for the second part of this lab. Working off the code from part 1, we built a joystick controlled clock with two modes: binary clock and normal 24-hour clock. It utilizes a Sparkfun QWIIC joystick and mini piTFT for hardware components, and relies on webcolors, I2C communication, and a finite state machine (FSM) on the software side.
+Working off the code from part 1, we built a joystick controlled clock with two modes: binary clock and normal 24-hour clock. It utilizes a Sparkfun QWIIC joystick and mini piTFT for hardware components, and relies on webcolors, I2C communication, and a finite state machine (FSM) on the software side. The program is written in `binaryclock_pt2.py`.
 
 The clock has three states: colored screen, binary clock, and 24-hour clock. Once the python script is run, the user is prompted to input a color, which is translated to RGB using webcolors and used as the screen background. The system then enters the middle state to show a screen with the user's chosen color. The joystick toggles between the states of the system: if the user pulls it to the left from the middle state it enters the binary clock mode, and if the user pulls it to the right from the middle state it enters the 24-hour clock mode. All three states can be entered by the user through left and right motions of the joystick, and the state will remain on the screen once the joystick stops moving.
 
