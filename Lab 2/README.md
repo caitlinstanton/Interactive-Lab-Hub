@@ -51,7 +51,7 @@ Here's a screenshot of the installed virtual environment.
 
 Here's a screenshot of the devices connected to the WiFi network, including the Pi at ixe00. `wpa_supplicant.conf` is uploaded to this repo.
 
-![Wifi Connection](wifi info.png)
+![Wifi Connection](wifiinfo.png)
 
 ## Part B. 
 ### Try out the Command Line Clock
@@ -75,7 +75,7 @@ If you're unfamiliar with the Python code in `cli_clock.py` have a look at [this
 
 Here's what the terminal clock looked like after running `cli_clock.py`.
 
-![Terminal clock](terminal clock.png)
+![Terminal clock](terminalclock.png)
 
 ## Part C. 
 ## Set up your RGB Display
