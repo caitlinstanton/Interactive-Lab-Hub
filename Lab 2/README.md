@@ -45,6 +45,14 @@ pi@ixe00:~ $ source circuitpython/bin/activate
 
 ```
 
+Here's a screenshot of the installed virtual environment.
+
+![Virtual environment](virtualenv.png)
+
+Here's a screenshot of the devices connected to the WiFi network, including the Pi at ixe00. `wpa_supplicant.conf` is uploaded to this repo.
+
+![Wifi Connection](wifi info.png)
+
 ## Part B. 
 ### Try out the Command Line Clock
 Clone the repo for this assignment
@@ -65,6 +73,9 @@ Install the packages from the requirements.txt and run the example
 you can press `ctrl-c` to exit.
 If you're unfamiliar with the Python code in `cli_clock.py` have a look at [this Python refresher](https://hackernoon.com/intermediate-python-refresher-tutorial-project-ideas-and-tips-i28s320p). If you're still concerned, please reach out to the teaching staff!
 
+Here's what the terminal clock looked like after running `cli_clock.py`.
+
+![Terminal clock](terminal clock.png)
 
 ## Part C. 
 ## Set up your RGB Display
