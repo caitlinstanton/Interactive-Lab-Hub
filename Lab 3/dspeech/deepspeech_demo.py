@@ -1,6 +1,7 @@
+import os
 import time, logging
 from datetime import datetime
-import threading, collections, queue, os, os.path
+import threading, collections, queue, os.path
 import deepspeech
 import numpy as np
 import pyaudio
@@ -152,7 +153,7 @@ class VADAudio(Audio):
                     ring_buffer.clear()
 
 
-def main(ARGS):
+def setup(ARGS):
     # Load DeepSpeech model
     if os.path.isdir(ARGS.model):
         model_dir = ARGS.model
@@ -165,27 +166,23 @@ def main(ARGS):
     if ARGS.scorer:
         logging.info("ARGS.scorer: %s", ARGS.scorer)
         model.enableExternalScorer(ARGS.scorer)
+    return model
 
-    # Start audio with VAD
-    vad_audio = VADAudio(aggressiveness=ARGS.vad_aggressiveness,
-                         device=ARGS.device,
-                         input_rate=ARGS.rate,
-                         file=ARGS.file)
-    print("Listening (ctrl-C to exit)...")
-    frames = vad_audio.vad_collector()
-
+def interpret(ARGS,model,frames):
     # Stream from microphone to DeepSpeech using VAD
     spinner = None
     if not ARGS.nospinner:
         spinner = Halo(spinner='line')
-    stream_context = model.createStream()
+
     wav_data = bytearray()
+    stream_context = model.createStream()
     for frame in frames:
         if frame is not None:
             if spinner: spinner.start()
             logging.debug("streaming frame")
             stream_context.feedAudioContent(np.frombuffer(frame, np.int16))
             if ARGS.savewav: wav_data.extend(frame)
+            return False
         else:
             if spinner: spinner.stop()
             logging.debug("end utterence")
@@ -193,11 +190,15 @@ def main(ARGS):
                 vad_audio.write_wav(os.path.join(ARGS.savewav, datetime.now().strftime("savewav_%Y-%m-%d_%H-%M-%S_%f.wav")), wav_data)
                 wav_data = bytearray()
             text = stream_context.finishStream()
-            if (text == "bill" or text == "work"):
-                print("Recognized: %s" % text)
-            else:
-                print()
-            stream_context = model.createStream()
+            print(text)
+            return True
+            # if (text == "bill" or text == "work"):
+            #     print("yeeee")
+            #     return True
+            # else:
+            #     print("nooo")
+            #     return False
+            # stream_context = model.createStream()
 
 if __name__ == '__main__':
     DEFAULT_SAMPLE_RATE = 16000
