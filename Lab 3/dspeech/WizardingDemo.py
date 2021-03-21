@@ -57,7 +57,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.end_headers()
             try:
                 while True:
-                    global output
+                    global output #needs to be a global to operate properly!!
                     with output.condition:
                         output.condition.wait()
                         frame = output.frame
