@@ -173,10 +173,12 @@ def interpret(ARGS,model,frames):
     spinner = None
     if not ARGS.nospinner:
         spinner = Halo(spinner='line')
-
+    print("interpret")
     wav_data = bytearray()
     stream_context = model.createStream()
+    print(stream_context)
     for frame in frames:
+        print("in for loop")
         if frame is not None:
             if spinner: spinner.start()
             logging.debug("streaming frame")

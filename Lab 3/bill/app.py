@@ -56,8 +56,9 @@ def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@socketio.on('speak')
-def handel_speak(val):
+@app.route('/wizard')
+def handle_speak():
+    val = "Hello"
     call(f"espeak '{val}'", shell=True)
 
 if __name__ == '__main__':

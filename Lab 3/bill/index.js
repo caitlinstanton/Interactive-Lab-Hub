@@ -10,6 +10,7 @@ const send = document.getElementById('send');
 
 send.onclick = () => {
   socket.emit('speak', wordsIn.value)
+  console.log("HEELLOOO")
   wordsIn.value = ''
 }
 wordsIn.onkeyup = (e) => { if (e.keyCode === 13) { send.click(); } };

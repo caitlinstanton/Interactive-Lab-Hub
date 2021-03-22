@@ -5,14 +5,25 @@
 </head>
 
 <body>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type=text/javascript>
+          $(function() {
+            $('#send').on('click', function(e) {
+              e.preventDefault()
+              $.getJSON('/wizard',
+                  function(data) {
+                //do nothing
+              });
+              return false;
+            });
+          });
+  </script>
   <h1>Video Streaming Demonstration</h1>
   <img src="{{ url_for('video_feed') }}">
-  <label> Speak
+  <br>
+  <label> Get them to focus!
     <input type="text" id='wordsIn'>
     <button id='send'>send</button>
-
-  </label>
-  <script src="static/index.js"></script>
 </body>
 
 </html>
