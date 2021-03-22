@@ -173,12 +173,10 @@ def interpret(ARGS,model,frames):
     spinner = None
     if not ARGS.nospinner:
         spinner = Halo(spinner='line')
-    print("interpret")
+    print("Interpreting speech")
     wav_data = bytearray()
     stream_context = model.createStream()
-    print(stream_context)
     for frame in frames:
-        print("in for loop")
         if frame is not None:
             if spinner: spinner.start()
             logging.debug("streaming frame")
@@ -194,13 +192,6 @@ def interpret(ARGS,model,frames):
             text = stream_context.finishStream()
             print(text)
             return True
-            # if (text == "bill" or text == "work"):
-            #     print("yeeee")
-            #     return True
-            # else:
-            #     print("nooo")
-            #     return False
-            # stream_context = model.createStream()
 
 if __name__ == '__main__':
     DEFAULT_SAMPLE_RATE = 16000
