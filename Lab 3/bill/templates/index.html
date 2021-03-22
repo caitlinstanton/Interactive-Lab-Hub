@@ -10,10 +10,12 @@
           $(function() {
             $('#send').on('click', function(e) {
               e.preventDefault()
-              $.getJSON('/wizard',
-                  function(data) {
-                //do nothing
+              // $.getJSON('/wizard',
+              //     function() {
+              $.post( "/wizard", {
+                  javascript_data: document.getElementById("wordsIn").value 
               });
+              // });
               return false;
             });
           });

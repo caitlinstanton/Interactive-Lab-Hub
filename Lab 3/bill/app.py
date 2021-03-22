@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 from importlib import import_module
 import os
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 from flask_socketio import SocketIO, send, emit
 from subprocess import Popen, call
 import socket
 import deepspeech_demo
+import json
 
 # import camera driver
 if os.environ.get('CAMERA'):
@@ -56,10 +57,13 @@ def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/wizard')
+@app.route('/wizard', methods = ["POST"])
 def handle_speak():
-    val = "Hello"
-    call(f"espeak '{val}'", shell=True)
+    jsdata = request.form['javascript_data']
+    print(jsdata)
+    # return jsdata
+    # val = "Hello"
+    call(f"espeak '{jsdata}'", shell=True)
 
 if __name__ == '__main__':
     DEFAULT_SAMPLE_RATE = 16000
