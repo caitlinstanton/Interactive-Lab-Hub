@@ -9,11 +9,18 @@ import deepspeech_demo
 PAGE="""\
 <html>
 <head>
-<title>picamera MJPEG streaming demo</title>
+<title>FOCUS</title>
 </head>
 <body>
-<h1>PiCamera MJPEG Streaming Demo</h1>
+<h1>Bill, Your Anti-Procrastinator</h1>
 <img src="stream.mjpg" width="640" height="480" />
+<br>
+<label> Speak
+        <input type="text" id='wordsIn'>
+        <button name="send" value="false">send</button>
+
+    </label>
+<script src="static/index.js"></script>
 </body>
 </html>
 """

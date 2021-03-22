@@ -1,0 +1,18 @@
+<html>
+
+<head>
+  <title>Video Streaming Demonstration</title>
+</head>
+
+<body>
+  <h1>Video Streaming Demonstration</h1>
+  <img src="{{ url_for('video_feed') }}">
+  <label> Speak
+    <input type="text" id='wordsIn'>
+    <button id='send'>send</button>
+
+  </label>
+  <script src="static/index.js"></script>
+</body>
+
+</html>
