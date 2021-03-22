@@ -60,10 +60,9 @@ def video_feed():
 @app.route('/wizard', methods = ["POST"])
 def handle_speak():
     jsdata = request.form['javascript_data']
-    print(jsdata)
-    # return jsdata
-    # val = "Hello"
+    print("Saying " + jsdata)
     call(f"espeak '{jsdata}'", shell=True)
+    return "Wizarding done!"
 
 if __name__ == '__main__':
     DEFAULT_SAMPLE_RATE = 16000
