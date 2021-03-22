@@ -81,6 +81,7 @@
               $.post( "/wizard", {
                   javascript_data: document.getElementById("wordsIn").value 
               });
+              document.getElementById("wordsIn").value = ''
               return false;
             });
           });
