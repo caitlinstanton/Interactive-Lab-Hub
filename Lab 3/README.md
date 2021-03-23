@@ -91,6 +91,11 @@ Create a system that runs on the Raspberry Pi that takes in one or more sensors 
  
 *what was the feedback? Who did it come from?*
 > Sujith's feedback: "I really like your groups idea and think I could personally use it haha. The only suggestion I have is to include key words in deepspeech that indicate that the user is not working. Then, Bill/the friend would just be notified and be able to help."
+>
+> Andrew's feedback: "I thought the decision to give it a real name rather than something closer to just a description was really smart and definitely helps users get comfortable with the device much faster. Rather than just a 'STOP', as an extension you could give Bill multiple levels of suggestion, starting from gently reminding the user to stop being distracted to forcefully being annoying until the user gets back to work; this could be potentially more user-friendly and lets you configure it so you can get in the occasional meme if you're just doing casual work."
+>
+> From this feedback, we are glad with our design choices in the functionality of Bill and how Bill will be voice activated.  Something we decided to change is to have Bill say a phrase versus just "STOP," as Andrew suggested.  This may help with the user interaction because it will be more natural for a friend to say a phrase and "STOP" can appear to be aggressive.
+ 
  
 ## Prototype your system
  
@@ -164,7 +169,11 @@ TypeError: The view function did not return a valid response.
 ```
 >Though this didn’t impair the functionality of Bill, we wanted to make sure that all of our loose ends were tied up. [This post](https://stackoverflow.com/questions/25034123/flask-value-error-view-function-did-not-return-a-response) told us that the POST request method “handle_speak()” in app.py needed to return either a function or a string, so we adjusted the method accordingly.
 >
->To make Bill more presentable, we referenced [this project from ECE 5725](https://courses.ece.cornell.edu/ece5990/ECE5725_Spring2020_Projects/May_15_Demo/Smart%20Home%20Security/ak754_tss86_Monday/index.html#results) for their HTML and CSS formatting.
+>To make Bill more presentable, we referenced [this project from ECE 5725](https://courses.ece.cornell.edu/ece5990/ECE5725_Spring2020_Projects/May_15_Demo/Smart%20Home%20Security/ak754_tss86_Monday/index.html#results) for their HTML and CSS formatting.  Below is how our final interface looks:
+>
+>![](BillGUI.png)
+>
+ 
 >
 >For more visual stimuli, a green LED (connected to an I2C button) flares brightly when Bill is speaking with the user. We favored green over red in order to make Bill seem less antagonistic and aggressive.
 >
@@ -174,12 +183,18 @@ TypeError: The view function did not return a valid response.
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
  
+>Our housemates were able to test out the system.  
+>
+>Particularly, Caitlin's housemate, Michael, has some technical experience and already knew that there was probably wizarding involved since he reasoned that there is a lack of image processing or a computer vision library and with only using a web socket, there wouldn't be enough resources to determine facial resources.  However, he thought that monitoring the system was great! He said it was really convenient to not have to click on anything and Bill just starts and stops due to voice activated integration. 
+>
+>For Grace's housemate, Christin, she was unaware that this was a wizarding interaction.  At first, she mentioned that she was slightly uncomfortable that a camera would be watching while she was studying.  After Grace mentioned that it was a wizard controlling Bill, she was even more creeped out.  However, she said that if she had faith in who was watching her, she would use Bill to help her not become distracted and also suggested another system to monitor her computer screen or phone usage.
 >Our housemates were able to test out the system.  Particularly, Caitlin's housemate, Michael, has some technical experience and already knew that there was probably wizarding involved since he reasoned that there is a lack of image processing or a computer vision library and with only using a web socket, there wouldn't be enough resources to determine facial resources.  However, he thought that monitoring the system was great! He said it was really convenient to not have to click on anything and Bill just starts and stops due to voice activated integration. 
  
 Answer the following:
  
 ### What worked well about the system and what didn't?
->It is very convenient overall since the user can just use his or her voice to turn Bill on and off.  Many apps on the phone or programs require clicking or tapping, and sometimes, the user forgets to do so.  From the user perspective, it may be creepy that Bill is always watching them (Michale mentioned this) even though we gave Bill a blinking green LED.  Some other feedback was that having the LED turn on while Bill was talking seemed cool, and they wished that the LED would blink when Bill is turning off and on, just like Google Home or Amazon's Alexa. 
+>It is very convenient overall since the user can just use his or her voice to turn Bill on and off.  Many apps on the phone or programs require clicking or tapping, and sometimes, the user forgets to do so.  From the user perspective, it may be creepy that Bill is always watching them (all users mentioned this)
+(Michale mentioned this) even though we gave Bill a blinking green LED.  Some other feedback was that having the LED turn on while Bill was talking seemed cool, and they wished that the LED would blink when Bill is turning off and on, just like Google Home or Amazon's Alexa. 
  
 ### What worked well about the controller and what didn't?
 >What worked well was that the controller could easily see the user's face, whether the user was being productive or not.  The controller could also just speak to the user by typing effortlessly on the wonderful UI.  However, the monitoring features were limited since we did not implement the controller's ability to see what websites the user went on, as that could be an easier way to indicate if the user is procrastinating. 
