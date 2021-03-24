@@ -8,6 +8,12 @@ import socket
 import deepspeech_demo
 import json
 
+import time
+from random import randint
+import board
+import busio
+from i2c_button import I2C_Button
+
 # import camera driver
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
@@ -23,17 +29,31 @@ not_active = True
 app = Flask(__name__)
 socketio = SocketIO(app)
 
+i2c = busio.I2C(board.SCL, board.SDA)
+# initialize the button
+button = I2C_Button(i2c)
+
 @app.route('/')
 def index():
     """Video streaming home page."""
     global ARGS
     deepspeech_demo.setup(ARGS)
+    while not i2c.try_lock():
+        pass
+    devices = i2c.scan()
+    i2c.unlock()
+    print('I2C devices found:', [hex(n) for n in devices])
+    default_addr = 0x6f
+    if default_addr not in devices:
+	    print('warning: no device at the default button address', default_addr)
+
     return render_template('index.html')
 
 
 def gen(camera):
     """Video streaming generator function."""
     while True:
+        button.led_bright = 0
         frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
@@ -62,6 +82,7 @@ def handle_speak():
     jsdata = request.form['javascript_data']
     print("Saying " + jsdata)
     call(f"espeak '{jsdata}'", shell=True)
+    button.led_bright = 255
     return "Wizarding done!"
 
 if __name__ == '__main__':
