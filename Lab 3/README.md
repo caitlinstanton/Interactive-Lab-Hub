@@ -55,19 +55,9 @@ From a remote browser on the same network, check to make sure your web server is
 In the [demo directory](./demo), you will find an example wizard of oz project you may use as a template. **You do not have to** feel free to get creative. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser. You can control what system says from the controller as well.
  
 ## Optional
-<<<<<<< HEAD
  
 There is an included [dspeech](.dspeech) demo that uses [Mozilla DeepSpeech](https://github.com/mozilla/DeepSpeech) for speech to text. If you're interested in trying it out we suggest you create a separate virtualenv. 
  
- 
- 
-=======
-
-There is an included [dspeech](./dspeech) demo that uses [Mozilla DeepSpeech](https://github.com/mozilla/DeepSpeech) for speech to text. If you're interested in trying it out we suggest you create a seperarate virutalenv. 
-
-
-
->>>>>>> 6a8e147e25de4cbf173d8e890905be643e43691f
 # Lab 3 Part 2
  
 Create a system that runs on the Raspberry Pi that takes in one or more sensors and requires participants to speak to it. Document how the system works and include videos of both the system and the controller.
