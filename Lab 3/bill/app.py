@@ -46,13 +46,8 @@ def index():
     print('I2C devices found:', [hex(n) for n in devices])
     default_addr = 0x6f
     if default_addr not in devices:
-<<<<<<< HEAD
-	    print('warning: no device at the default button address', default_addr)
-
-=======
         print('warning: no device at the default button address', default_addr)
     button.led_bright = 0
->>>>>>> ed7c045a7c30f2e327af8d1110026d964e4a1dc8
     return render_template('index.html')
 
 
