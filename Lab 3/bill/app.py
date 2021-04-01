@@ -14,9 +14,6 @@ import board
 import busio
 from i2c_button import I2C_Button
 
-# initialize I2C
-i2c = busio.I2C(board.SCL, board.SDA)
-
 # import camera driver
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
@@ -33,6 +30,9 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 button = I2C_Button(i2c)
 
+i2c = busio.I2C(board.SCL, board.SDA)
+# initialize the button
+button = I2C_Button(i2c)
 
 @app.route('/')
 def index():
@@ -54,6 +54,7 @@ def index():
 def gen(camera):
     """Video streaming generator function."""
     while True:
+        button.led_bright = 0
         frame = camera.get_frame()
         button.led_bright = 0
         yield (b'--frame\r\n'
