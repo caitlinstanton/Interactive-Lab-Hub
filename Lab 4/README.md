@@ -187,7 +187,7 @@ Reiterating:
 >
 > Below is how the paper prototype looks like with what imaginary beads (or bananas) would look like, even though in reality, these wells for the mancala will be empty:
 >
-> ![](paper_prototype_setup.jpeg)
+> ![](paper_prototype_setup.jpg)
 >
 > #### Materiality 
 > We will use sturdy plastic for each of the mancala wells and strong origami paper boxes for the ends.  We used [this origami tutorial](https://www.youtube.com/watch?v=LUEwM_ZiFIg) to make the paper boxes and it looks aesthetically pleasing since everything is white.  Below is a picture of one of the origami boxes. Note that for our final prototype, we used a total of three boxes where another one of these boxes to put underneath the Mancala board so that it was elevated slightly to not interfere with the capacitive sensor connections.
