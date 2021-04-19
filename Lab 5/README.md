@@ -134,6 +134,8 @@ Try out different interactions, outputs and inputs.
 >
 >We started development by training a [Teachable Machine model](https://teachablemachine.withgoogle.com/). This involved capturing photos with our phones of cashews, craisins, and almonds from various angles all with the background of a gray plate. These images were downloaded to the model and manually tagged to export a trained model (converted_savedmodel.zip) that could identify cashews, craisins, and almonds.
 >
+> ![](modelimages.png)
+>
 >To set up the camera and TFT relationship we used the tutorial’s [Raspberry Pi Setup](https://learn.adafruit.com/teachable-machine-raspberry-pi-tensorflow-camera/raspberry-pi-setup) page. [This tutorial](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/3) helped set up the Raspberry PiCamera while the [Running TensorFlow Lite Object Recognition on the Raspberry Pi 4 tutorial](https://learn.adafruit.com/running-tensorflow-lite-on-the-raspberry-pi-4/initial-setup) helped install the necessary software for the TFT and Tensorflow Lite.
 >
 >The first error we ran into was getting the camera to display on the TFT screen. We moved away from the mini piTFT and instead started working with a [2.8” resistive TFT screen](https://www.adafruit.com/product/1601), both because this was the screen utilized in the tutorial and the larger screen would make the display more user-friendly. When the Running TensorFlow Lite tutorial asked to run ```raspistill -t 0```, the expected result was a live video feed on the TFT; this was not the case for us, and instead the command hung. We tried multiple fixes for this:
@@ -157,10 +159,10 @@ Now flight test your interactive prototype and **note your observations**:
 >
 >Since we were having many issues with displaying the TFT stream on the TFT when connected via ssh, we tried using Moba to connect to the Pi instead. This allowed any calls to display to the TFT to be ported onto popups on our laptop, meaning that the expected livestream and usage of the Teachable Machine model labels was visible. Once logged in via Moba, the prototype can be run using the following commands from the home directory:
 >
-> *```cd rpi-vision```
-> *```python3 -m virtualenv -p $(which python3) .venv```
-> *```source .venv/bin/activate```
-> *```python3 tests/pitft_teachablemachine.py converted_savedmodel.zip```
+> * ```cd rpi-vision```
+> * ```python3 -m virtualenv -p $(which python3) .venv```
+> * ```source .venv/bin/activate```
+> * ```python3 tests/pitft_teachablemachine.py converted_savedmodel.zip```
 >
 > **1. When does it do what it is supposed to do?**
 > In good lighting, and when the ingredient is well centered and isolated in the PiCam frame, it is able to detect the difference between cashews, almonds, and craisins.
@@ -195,6 +197,9 @@ Now flight test your interactive prototype and **note your observations**:
 ### Characterize your own Observant system
  
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
+>
+> Since the focus of our interaction was to ensure people with low vision or those who are blind can enjoy their food without having to wonder what it is or if it fits their preferences, we retrofit the Raspberry Pi and PiCamera system to a glove. This glove could be waved over any surface with items on it to identify whether any of the items are cashews, craisins, and/or almonds. A display via Moba was available, but we also made sure to incorporate auditary cues via the Pi to verbally identify what tagged item was seen.
+>
 During the lecture, we mentioned questions to help characterize a material:
 > * **What can you use *Cashewser* for?**
 > Cashewser is a visibility indication tool that can identify different ingredients in trailmix. (Particularly, cashews, almonds, and craisins)
