@@ -198,7 +198,7 @@ Now flight test your interactive prototype and **note your observations**:
  
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
 >
-> Since the focus of our interaction was to ensure people with low vision or those who are blind can enjoy their food without having to wonder what it is or if it fits their preferences, we retrofit the Raspberry Pi and PiCamera system to a glove. This glove could be waved over any surface with items on it to identify whether any of the items are cashews, craisins, and/or almonds. A display via Moba was available, but we also made sure to incorporate auditary cues via the Pi to verbally identify what tagged item was seen.
+> Since the focus of our interaction was to ensure people with low vision or those who are blind can enjoy their food without having to wonder what it is or if it fits their preferences, we retrofit the Raspberry Pi and PiCamera system to a glove. This glove could be waved over any surface with items on it to identify whether any of the items are cashews, craisins, and/or almonds. A display via Moba was available, but we also made sure to incorporate auditory cues via the Pi to verbally identify what tagged item was seen.
 >
 During the lecture, we mentioned questions to help characterize a material:
 > * **What can you use *Cashewser* for?**
