@@ -129,12 +129,39 @@ Try out different interactions, outputs and inputs.
 >Below is the interaction for the more complex scenario of someone who has poor eyesight or is blind and needs assistance in identifying various objects, such as a craisin, cashew, and almond.  Below is a storyboard of our interaction:
 >
 > ![](storyboard.png)
+>
+>With our storyboard fleshed out, we determined that our system required a Raspberry PiCamera, external stimuli (i.e. a display or audio output), and a machine learning model. The Adafruit tutorial [Raspberry Pi + Teachable Machine = Teachable Pi](https://learn.adafruit.com/teachable-machine-raspberry-pi-tensorflow-camera/getting-started) was a good place to start, as it resulted in an end product that used a Raspberry PiCamera to livestream a feed to the TFT screen and show identified tags through a Teachable Machine model.
+>
+>We started development by training a [Teachable Machine model](https://teachablemachine.withgoogle.com/). This involved capturing photos with our phones of cashews, craisins, and almonds from various angles all with the background of a gray plate. These images were downloaded to the model and manually tagged to export a trained model (converted_savedmodel.zip) that could identify cashews, craisins, and almonds.
+>
+>To set up the camera and TFT relationship we used the tutorial’s [Raspberry Pi Setup](https://learn.adafruit.com/teachable-machine-raspberry-pi-tensorflow-camera/raspberry-pi-setup) page. [This tutorial](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/3) helped set up the Raspberry PiCamera while the [Running TensorFlow Lite Object Recognition on the Raspberry Pi 4 tutorial](https://learn.adafruit.com/running-tensorflow-lite-on-the-raspberry-pi-4/initial-setup) helped install the necessary software for the TFT and Tensorflow Lite.
+>
+>The first error we ran into was getting the camera to display on the TFT screen. We moved away from the mini piTFT and instead started working with a [2.8” resistive TFT screen](https://www.adafruit.com/product/1601), both because this was the screen utilized in the tutorial and the larger screen would make the display more user-friendly. When the Running TensorFlow Lite tutorial asked to run ```raspistill -t 0```, the expected result was a live video feed on the TFT; this was not the case for us, and instead the command hung. We tried multiple fixes for this:
+> * Changing the boot configuration to desktop mode (so that the Raspberry Pi desktop was visible on the TFT) since the display could be run on VNC Viewer and console mode (to show the terminal on the console), both with auto-login
+> * Installing the libraries from the [Easy Install page for the 2.8” TFT](https://learn.adafruit.com/adafruit-pitft-28-inch-resistive-touchscreen-display-raspberry-pi/easy-install-2)
+> * Running through the [DIY WiFi Raspberry Pi Touchscreen Camera tutorial](https://learn.adafruit.com/diy-wifi-raspberry-pi-touch-cam/pi-setup) to install software for the TFT and test the connected camera, as well as diving into the [Github repo of source code](https://github.com/adafruit/adafruit-pi-cam) for the tutorial
+> * Trawling through Raspberry Pi forum posts like [this one](https://www.raspberrypi.org/forums/viewtopic.php?t=41836) to see what other people did to stream the camera to the TFT
+> * Running through the TFT touchscreen installation instructions from lab 1 of ECE 5725 (Designing Embedded Operating Systems), taught by Professor Joe Skovira 
+>
+>Despite all of our debugging both hardware and software, we weren’t able to get the livestream onto the Pi. Instead, we pivoted to a web stream on a hosted website, similar to what we did for lab 3. This was relatively easy to set up using [pistreaming](https://github.com/waveform80/pistreaming/). Frames from this stream could be captured using the [captura() command](https://picamera.readthedocs.io/en/release-1.10/recipes1.html) from the Raspberry PiCamera documentation. 
+>
+>Last but certainly not least, we needed to test the Teachable Machine model with live input from the PiCamera. When installing TensorFlow and any library dependencies, we ran into a few issues that were quickly resolved. This includes:
+> * ```ValueError: numpy.ndarray size changed``` which required uninstalling and installing numpy as per [this post](https://stackoverflow.com/questions/66060487/valueerror-numpy-ndarray-size-changed-may-indicate-binary-incompatibility-exp)
+> * ```UserWarning: No training configuration found in save file: the model was not compiled. Compile it manually.``` which was fixed by adding ```compile=False``` into the arguments of ``load_model()``` as per [this post](https://stackoverflow.com/questions/53295570/userwarning-no-training-configuration-found-in-save-file-the-model-was-not-c)
+> * ```PermissionDeniedError when importing frozen graph``` when running the command ```python3 tests/pitft_teachablemachine.py converted_savedmodel.zip``` which was fixed by making the [rpi_vision](https://github.com/adafruit/rpi-vision.git) folder on the Pi executable with ```chmod 777``` as per [this post](https://github.com/InFoCusp/tf_cnnvis/issues/64) 
  
 ### Part C
 ### Test the interaction prototype
  
 Now flight test your interactive prototype and **note your observations**:
-For example:
+>
+>Since we were having many issues with displaying the TFT stream on the TFT when connected via ssh, we tried using Moba to connect to the Pi instead. This allowed any calls to display to the TFT to be ported onto popups on our laptop, meaning that the expected livestream and usage of the Teachable Machine model labels was visible. Once logged in via Moba, the prototype can be run using the following commands from the home directory:
+>
+> ```cd rpi-vision```
+> ```python3 -m virtualenv -p $(which python3) .venv```
+> ```source .venv/bin/activate```
+> ``````python3 tests/pitft_teachablemachine.py converted_savedmodel.zip``
+>
 > **1. When does it do what it is supposed to do?**
 > In good lighting, and when the ingredient is well centered and isolated in the PiCam frame, it is able to detect the difference between cashews, almonds, and craisins.
 >
