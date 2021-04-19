@@ -157,10 +157,10 @@ Now flight test your interactive prototype and **note your observations**:
 >
 >Since we were having many issues with displaying the TFT stream on the TFT when connected via ssh, we tried using Moba to connect to the Pi instead. This allowed any calls to display to the TFT to be ported onto popups on our laptop, meaning that the expected livestream and usage of the Teachable Machine model labels was visible. Once logged in via Moba, the prototype can be run using the following commands from the home directory:
 >
-> ```cd rpi-vision```
-> ```python3 -m virtualenv -p $(which python3) .venv```
-> ```source .venv/bin/activate```
-> ``````python3 tests/pitft_teachablemachine.py converted_savedmodel.zip``
+> *```cd rpi-vision```
+> *```python3 -m virtualenv -p $(which python3) .venv```
+> *```source .venv/bin/activate```
+> *```python3 tests/pitft_teachablemachine.py converted_savedmodel.zip```
 >
 > **1. When does it do what it is supposed to do?**
 > In good lighting, and when the ingredient is well centered and isolated in the PiCam frame, it is able to detect the difference between cashews, almonds, and craisins.
