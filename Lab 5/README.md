@@ -149,8 +149,8 @@ Try out different interactions, outputs and inputs.
 >
 >Last but certainly not least, we needed to test the Teachable Machine model with live input from the PiCamera. When installing TensorFlow and any library dependencies, we ran into a few issues that were quickly resolved. This includes:
 > * ```ValueError: numpy.ndarray size changed``` which required uninstalling and installing numpy as per [this post](https://stackoverflow.com/questions/66060487/valueerror-numpy-ndarray-size-changed-may-indicate-binary-incompatibility-exp)
-> * ```UserWarning: No training configuration found in save file: the model was not compiled. Compile it manually.``` which was fixed by adding ```compile=False``` into the arguments of ``load_model()``` as per [this post](https://stackoverflow.com/questions/53295570/userwarning-no-training-configuration-found-in-save-file-the-model-was-not-c)
-> * ```PermissionDeniedError when importing frozen graph``` when running the command ```python3 tests/pitft_teachablemachine.py converted_savedmodel.zip``` which was fixed by making the [rpi_vision](https://github.com/adafruit/rpi-vision.git) folder on the Pi executable with ```chmod 777``` as per [this post](https://github.com/InFoCusp/tf_cnnvis/issues/64) 
+> * ```UserWarning: No training configuration found in save file: the model was not compiled. Compile it manually.``` which was fixed by adding ```compile=False``` into the arguments of ```load_model()``` as per [this post](https://stackoverflow.com/questions/53295570/userwarning-no-training-configuration-found-in-save-file-the-model-was-not-c)
+> * ```PermissionDeniedError when importing frozen graph``` when running the command ```python3 tests/pitft_teachablemachine.py converted_savedmodel.zip``` which was fixed by making the [rpi_vision](https://github.com/adafruit/rpi-vision.git) folder on the Pi executable with ```sudo chmod -R 777``` as per [this post](https://github.com/InFoCusp/tf_cnnvis/issues/64) 
  
 ### Part C
 ### Test the interaction prototype
