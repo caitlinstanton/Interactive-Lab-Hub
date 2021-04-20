@@ -10,6 +10,6 @@ Please place links here to the README.md's for each of your labs here:
 
 [Lab 3. You're a Wizard (with Grace Tan and Priya Kattappurath)](https://github.com/caitlinstanton/Interactive-Lab-Hub/blob/Spring2021/Lab%203/README.md)
 
-[Lab 4. Ph-UI!!!](Lab%204/)
+[Lab 4. Ph-UI!!! (with Grace Tan and Priya Kattappurath)](Lab%204/)
 
-[Lab 5. Observant Systems](Lab%205/)
+[Lab 5. Observant Systems (with Grace Tan and Priya Kattappurath)](Lab%205/)
