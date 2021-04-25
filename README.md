@@ -12,12 +12,8 @@ Please place links here to the README.md's for each of your labs here:
 
 [Lab 4. Ph-UI!!! (with Grace Tan and Priya Kattappurath)](Lab%204/)
 
-<<<<<<< HEAD
 [Lab 5. Observant Systems (with Grace Tan and Priya Kattappurath)](Lab%205/)
-=======
-[Lab 5. Observant Systems](Lab%205/)
 
 [Lab 6. Where We Go One, We Go All](Lab%206/)
 
 [Final Project](Final%20Project/)
->>>>>>> e0a734d7649efe943a7b1c0a1e21c48e68866709
