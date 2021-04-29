@@ -82,12 +82,12 @@ Glitch is a great tool for prototyping sites, interfaces and web-apps that's wor
 
 Find at least one class (more are okay) partner, and design a distributed application together. 
 
-**1. Explain your design For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
+** 1. Explain your design For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
 
 > Our design is an extension of our Lab 3 productivity assistant, biIl, which stands for “be intelligent In life.” In this application, the biIl-bot reads the user’s status updates to determine how productive (or unproductive) the user is at that time, and provides an appropriate response. This kind of productivity assistance is useful because it can be integrated into the user’s routine without any changes; the user can get productivity reminders and inspiration throughout their day by simply updating their status.
 
 
-**2. Diagram the architecture of the system. Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
+** 2. Diagram the architecture of the system. Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
 
 > The system consists of an input from the user, and biIl is the system who takes in the input, figures out what type of advice or encouragement the person needs from this input (also known as where the computation occurs), and biIl delivers the output which is the determined piece of advice or encouragement.  This exchange is done via status updates, which can be viewed on the MQTT Explorer. bill uses machine learning to understand the context and tone of the status, and natural language generation to create a response with a cadence similar to that of a friend or mentor.
 >
@@ -98,7 +98,7 @@ Find at least one class (more are okay) partner, and design a distributed applic
 > The first panel shows how Caitlin is very tired and is not motivated to do any work and when she tells this to biIl as shown on the second panel, biIl responds with taking a walk in the third panel, as that may motivate her. After Caitlin takes a walk and enjoys it, she tells biIl that she is now motivated to work and biIl encourages her as shown in panels 4 to 6.  Panel 7 shows how Caitlin is being productive and finishes her work.  When she tells biIl this, biIl affirms her in her productivity.
 
 
-**3. Build a working prototype of the system. Do think about the user interface: if someone encountered these bananas, would they know how to interact with them? Should they know what to expect?
+** 3. Build a working prototype of the system. Do think about the user interface: if someone encountered these bananas, would they know how to interact with them? Should they know what to expect?
 
 > The user interface is fairly straightforward. Since people are used to social media, the idea of updating a status is intuitive. In addition, the minimal nature of the interface is less distracting than other social media platforms. This contributes to the productivity-centered nature of biIl, as the platform will not distract the user from being productive.
 
@@ -108,6 +108,6 @@ Find at least one class (more are okay) partner, and design a distributed applic
 
 > ```reader.py``` doesn’t listen for a specific topic within “IDD/” but instead is able to see all messages. This is useful for our prototype specifically because this is meant to be a public lightweight social media platform where multiple people can post individual statuses. In this context, being able to see all subtopics under “IDD/” is equivalent to seeing all of your friends’ statuses (and bill’s response to your status!). When the program is first run, it creates a client and connects to the broker via password authentication (similar to ```sender.py```). Two callback functions are created: ```on_connect``` and ```on_message```. These functions only interrupt the program under specific circumstances (i.e. when ```reader.py``` is trying to connect to the broker, or when a new message was published to the broker). Callbacks are more time efficient than polling, which is when loops are used to constantly check on the status of a condition before prompting a certain reaction. ```on_message``` subscribes to all subtopics under “IDD/” using the ```subscribe(topic)``` function where ```topic``` equals “IDD/#”. ```on_message``` prints the newly published message with its corresponding topic and payload. A ```loop_forever``` call is the last function in the program; it blocks ```reader.py``` from ending. Typically this would inhibit further functionality, but since callbacks are built to interrupt currently running programs this program can still actively receive messages.
 
-**4. Document the working prototype in use. It may be helpful to record a Zoom session where you use the input in one location clearly causing response in another location.
+** 4. Document the working prototype in use. It may be helpful to record a Zoom session where you use the input in one location clearly causing response in another location.
 
 > Linked (here)[https://youtu.be/jmoP3u7TDms] is our zoom recording of Caitlin interacting with biIl.
