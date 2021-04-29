@@ -82,12 +82,32 @@ Glitch is a great tool for prototyping sites, interfaces and web-apps that's wor
 
 Find at least one class (more are okay) partner, and design a distributed application together. 
 
-**1. Explain your design** For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
+**1. Explain your design For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
 
-**2. Diagram the architecture of the system.** Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
+> Our design is an extension of our Lab 3 productivity assistant, biIl, which stands for “be intelligent In life.” In this application, the biIl-bot reads the user’s status updates to determine how productive (or unproductive) the user is at that time, and provides an appropriate response. This kind of productivity assistance is useful because it can be integrated into the user’s routine without any changes; the user can get productivity reminders and inspiration throughout their day by simply updating their status.
 
-**3. Build a working prototype of the system.** Do think about the user interface: if someone encountered these bananas, would they know how to interact with them? Should they know what to expect?
 
-**4. Document the working prototype in use.** It may be helpful to record a Zoom session where you should the input in one location clearly causing response in another location.
+**2. Diagram the architecture of the system. Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
 
-**5. BONUS (Wendy didn't approve this so you should probably ignore it)** get the whole class to run your code and make your distributed system BIGGER.
+> The system consists of an input from the user, and biIl is the system who takes in the input, figures out what type of advice or encouragement the person needs from this input (also known as where the computation occurs), and biIl delivers the output which is the determined piece of advice or encouragement.  This exchange is done via status updates, which can be viewed on the MQTT Explorer. bill uses machine learning to understand the context and tone of the status, and natural language generation to create a response with a cadence similar to that of a friend or mentor.
+>
+> Below is the storyboard that shows our system, consisting of Caitlin, the player or user, who is under the topic “caitlin”, and the system, who is biIl and under the topic “biIl” in the MQTT Explorer.  Every third panel, we see Caitlin’s life as she goes through various phases and then gets advice from biIl so she is more productive, or becomes more “intelligent in life.”  Note that in the storyboard, lightly shaded topic names in the MQTT Explorer indicate that the status has been updated.
+>
+> story board
+> 
+> The first panel shows how Caitlin is very tired and is not motivated to do any work and when she tells this to biIl as shown on the second panel, biIl responds with taking a walk in the third panel, as that may motivate her. After Caitlin takes a walk and enjoys it, she tells biIl that she is now motivated to work and biIl encourages her as shown in panels 4 to 6.  Panel 7 shows how Caitlin is being productive and finishes her work.  When she tells biIl this, biIl affirms her in her productivity.
+
+
+**3. Build a working prototype of the system. Do think about the user interface: if someone encountered these bananas, would they know how to interact with them? Should they know what to expect?
+
+> The user interface is fairly straightforward. Since people are used to social media, the idea of updating a status is intuitive. In addition, the minimal nature of the interface is less distracting than other social media platforms. This contributes to the productivity-centered nature of biIl, as the platform will not distract the user from being productive.
+
+>bill is housed within the MQTT platform, which is a lightweight messaging protocol structured around topics. Our prototype uses a central server node hosted at ```farlab.infosci.cornell.edu/8883``` (with settings shown in the MQTT Explorer screenshot in the lab instructions) but for a more robust system we would need to set up server nodes across various locations to account for increased load due to large numbers of requests from high numbers of clients. This was shown to be a potential issue when the class was utilizing the farlab server all at once as there would be lag in sending/receiving messages. Two Python scripts need to be run in order to achieve full functionality: ```sender.py``` and ```reader.py```.
+
+> ```sender.py``` instantiates an MQTT client with a random ID number and connects to the broker (``farlab.infosci.cornell.edu/8883```) via password authentication. It then relies on a forever loop of terminal inputs to either create a new topic, switch to another topic, or publish a message to the current topic. To create a new topic or switch to another topic, the user must type “new-topic”, which will break an inner forever loop while the program is waiting for a message and establish the topic to be “IDD/<the new input>”. Sending a message is as simple as typing in the terminal and the client running the ```publish(topic, val)``` command, where ```val``` is the terminal input and ```topic``` is the current topic name.
+
+> ```reader.py``` doesn’t listen for a specific topic within “IDD/” but instead is able to see all messages. This is useful for our prototype specifically because this is meant to be a public lightweight social media platform where multiple people can post individual statuses. In this context, being able to see all subtopics under “IDD/” is equivalent to seeing all of your friends’ statuses (and bill’s response to your status!). When the program is first run, it creates a client and connects to the broker via password authentication (similar to ```sender.py```). Two callback functions are created: ```on_connect``` and ```on_message```. These functions only interrupt the program under specific circumstances (i.e. when ```reader.py``` is trying to connect to the broker, or when a new message was published to the broker). Callbacks are more time efficient than polling, which is when loops are used to constantly check on the status of a condition before prompting a certain reaction. ```on_message``` subscribes to all subtopics under “IDD/” using the ```subscribe(topic)``` function where ```topic``` equals “IDD/#”. ```on_message``` prints the newly published message with its corresponding topic and payload. A ```loop_forever``` call is the last function in the program; it blocks ```reader.py``` from ending. Typically this would inhibit further functionality, but since callbacks are built to interrupt currently running programs this program can still actively receive messages.
+
+**4. Document the working prototype in use. It may be helpful to record a Zoom session where you use the input in one location clearly causing response in another location.
+
+> Linked (here)[https://youtu.be/jmoP3u7TDms] is our zoom recording of Caitlin interacting with biIl.
