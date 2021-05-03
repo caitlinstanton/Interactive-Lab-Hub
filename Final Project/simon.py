@@ -5,19 +5,13 @@ import time
 import sys
 import random
 
-one = qwiic_button.QwiicButton('0x6f')
-two = qwiic_button.QwiicButton('0x5f')
-three = qwiic_button.QwiicButton('0x4f')
-four = qwiic_button.QwiicButton('0x3f')
-five = qwiic_button.QwiicButton('0x1f')
-# six = qwiic_button.QwiicButton(i2c_addr)
-
-mapping = {1:one, 2:two, 3:three, 4:four, 5:five}
+mapping = {1:0x6f, 2:0x5f, 3:0x4f, 4:0x3f, 5:0x2f, 6:0x1f}
 
 for i in mapping:
-  i2c_addr = mapping[i]
-  name = str(i)
-  button = qwiic_button.QwiicButton(i2c_addr)
+  button = qwiic_button.QwiicButton(mapping[i])
+  button.set_debounce_time(500)
+  button.LED_off()
+  mapping[i] = button
 
 pattern = []
 for i in range(0,len(mapping)):
@@ -26,44 +20,75 @@ for i in range(0,len(mapping)):
 
 print(pattern)
 
-def turn_on():
-  print(one)
-  one.LED_on(255)
-
 def blink_buttons(idx):
   i = 0
-  while i <= idx:
-    print(i)
+  while i < idx:
+    print("BLINKED: " +str(pattern[i]))
     button = pattern[i]
-    if button == 1:
-      turn_on()
-      # one.LED_on(255)
-    else:
-      print("oop")
-    # print(mapping[button])
-    # mapping[button].LED_on(255)
-    # time.sleep(1)
-    # tmp.LED_off()
+    mapping[button].LED_on(255)
+    time.sleep(1)
+    mapping[button].LED_off()
+    time.sleep(1)
     i = i+1
 
-def run_example():
+def round():
 
-    if one.begin() == False:
-        print("\nThe Qwiic Button 1 isn't connected to the system. Please check your connection", \
-            file=sys.stderr)
-        return
-    
-    print("\nButton's ready!")
+  state = 0
+  # 0 -> START
+  # 1 -> BLINK SUBSET
+  # 2 -> WAIT FOR PRESS
+  # 3 -> CHECK BUTTON
+  # 4 -> DONE
 
-    while 1:
-
-        blink_buttons(4)
-        
-        time.sleep(0.02)    # Don't hammer too hard on the I2C bus
+  while True:
+    if state == 0:
+      print("START")
+      round = 1 # variable to keep track of one past the last button it's expecting
+      presses = []
+      state = 1
+    elif state == 1:
+      print("BLINK")
+      if round == len(pattern):
+        state = 4
+      else:
+        blink_buttons(round)
+        count = 0 # variable to keep track of the current press to check for
+        presses = []
+        state = 2
+    elif state == 2:
+      for i in mapping:
+        if mapping[i].is_button_pressed():
+          print("PRESSED " + str(i))
+          print("count: " + str(count))
+          presses.append(i)
+          state = 3
+          break
+        else:
+          state = 2
+    elif state == 3:
+      print("CHECK")
+      print(presses)
+      if presses[count] == pattern[count]:
+        print("correct press")
+        if count < (round - 1):
+          print("continue round")
+          state = 2
+          count += 1 
+          time.sleep(0.5)      
+        else:
+          print("next round\n")
+          round += 1
+          state = 1
+      else:
+        print("incorrect press")
+        presses = []
+        state = 1
+    elif state == 4:
+      print("DONE")
+      break
 
 if __name__ == '__main__':
     try:
-        run_example()
+      round()
     except (KeyboardInterrupt, SystemExit) as exErr:
-        print("\nEnding Example 7")
         sys.exit(0)
