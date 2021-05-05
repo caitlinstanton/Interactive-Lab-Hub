@@ -10,6 +10,7 @@ import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
 
+
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.CE0)
 dc_pin = digitalio.DigitalInOut(board.D25)
@@ -65,23 +66,9 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
-mapping = {1:0x6f, 2:0x5f, 3:0x4f, 4:0x3f, 5:0x2f, 6:0x1f}
-
-for i in mapping:
-  button = qwiic_button.QwiicButton(mapping[i])
-  button.set_debounce_time(500)
-  button.LED_off()
-  mapping[i] = button
-
-pattern = []
-for i in range(0,len(mapping)):
-  n = random.randint(1,len(mapping))
-  pattern.append(n)
-
-print(pattern)
-
-def blink_buttons(idx):
+def blink_buttons(idx,pattern,mapping):
   i = 0
+  print(pattern)
   while i < idx:
     print("BLINKED: " +str(pattern[i]))
     button = pattern[i]
@@ -91,76 +78,72 @@ def blink_buttons(idx):
     time.sleep(1)
     i = i+1
 
-def round():
+def press_pattern(state,round,count,mapping,pattern,presses):
 
-  state = 0
   # 0 -> START
   # 1 -> BLINK SUBSET
   # 2 -> WAIT FOR PRESS
   # 3 -> CHECK BUTTON
   # 4 -> DONE
 
-  while True:
-    # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width, height), outline=0, fill=0)
+  # Draw a black filled box to clear the image.
+  draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-    if state == 0:
-      print("START")
-      round = 1 # variable to keep track of one past the last button it's expecting
+  if state == 0:
+    print("START")
+    round = 1 # variable to keep track of one past the last button it's expecting
+    presses = []
+    state = 1
+
+  elif state == 1:
+    print("BLINK")
+    print(round)
+    if round == len(pattern):
+      state = 4
+    else:
+      
+      blink_buttons(round,pattern,mapping)
+      count = 0 # variable to keep track of the current press to check for
+      presses = []
+      state = 2
+  elif state == 2:
+    for i in mapping:
+      if mapping[i].is_button_pressed():
+        print("PRESSED " + str(i))
+        print("count: " + str(count))
+        presses.append(i)
+        state = 3
+        break
+      else:
+        state = 2
+  elif state == 3:
+    print("CHECK")
+    print(presses)
+    if presses[count] == pattern[count]:
+      print("correct press")
+      if count < (round - 1):
+        print("continue round")
+        state = 2
+        count += 1 
+        time.sleep(0.5)      
+      else:
+        print("next round\n")
+        round += 1
+        state = 1
+    else:
+      print("incorrect press")
       presses = []
       state = 1
-    elif state == 1:
-      print("BLINK")
-      if round == len(pattern):
-        state = 4
-      else:
-        blink_buttons(round)
-        count = 0 # variable to keep track of the current press to check for
-        presses = []
-        state = 2
-    elif state == 2:
-      for i in mapping:
-        if mapping[i].is_button_pressed():
-          print("PRESSED " + str(i))
-          print("count: " + str(count))
-          presses.append(i)
-          state = 3
-          break
-        else:
-          state = 2
-    elif state == 3:
-      print("CHECK")
-      print(presses)
-      if presses[count] == pattern[count]:
-        print("correct press")
-        if count < (round - 1):
-          print("continue round")
-          state = 2
-          count += 1 
-          time.sleep(0.5)      
-        else:
-          print("next round\n")
-          round += 1
-          state = 1
-      else:
-        print("incorrect press")
-        presses = []
-        state = 1
-    elif state == 4:
-      print("DONE")
-      break
+  elif state == 4:
+    print("DONE")
+    
+  return (state,round,count,presses)
 
-    # Write four lines of text
-    IP = "Round: " + str(round)
-    y = top
-    draw.text((x, y), IP, font=font, fill="#FFFFFF")
+  # Write four lines of text
+  IP = "Round: " + str(round)
+  y = top
+  draw.text((x, y), IP, font=font, fill="#FFFFFF")
 
-    # Display image.
-    disp.image(image, rotation)
-    time.sleep(0.1)
-
-if __name__ == '__main__':
-    try:
-      round()
-    except (KeyboardInterrupt, SystemExit) as exErr:
-        sys.exit(0)
+  # Display image.
+  disp.image(image, rotation)
+  time.sleep(0.1)
