@@ -12,11 +12,14 @@ start_time = 0
 end_time = 0
 swipe_time_sec = 0
 
-while(not(swipe_time_sec>1 and swipe_time_sec<3)):
+def swiped():
+  if (not(swipe_time_sec>1 and swipe_time_sec<3)):
     start_time = time.perf_counter()
     while (mpr121[0].value):
         print("still touching")
     end_time = time.perf_counter()
     swipe_time_sec = end_time - start_time
     print(swipe_time_sec)
-print("done")
+    return False
+  else:
+    return True
