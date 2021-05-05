@@ -17,7 +17,7 @@ if __name__ == '__main__':
       # 4 -> WIN
       # 5 -> LOSE
 
-      order = [2]
+      order = [1,2]
       print(order)
 
       wires = False
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         print(current)
         if state == 0:
           start = time.perf_counter()
-          end = start + 10
+          end = start + 90
           print("start: " + str(start))
           print("end: " + str(end))
           random.shuffle(order)

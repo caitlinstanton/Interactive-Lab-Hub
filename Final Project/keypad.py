@@ -73,9 +73,9 @@ def blink_buttons(idx,pattern,mapping):
     print("BLINKED: " +str(pattern[i]))
     button = pattern[i]
     mapping[button].LED_on(255)
-    time.sleep(1)
+    time.sleep(0.25)
     mapping[button].LED_off()
-    time.sleep(1)
+    time.sleep(0.25)
     i = i+1
 
 def press_pattern(state,round,count,mapping,pattern,presses):
@@ -101,7 +101,6 @@ def press_pattern(state,round,count,mapping,pattern,presses):
     if round == len(pattern):
       state = 4
     else:
-      
       blink_buttons(round,pattern,mapping)
       count = 0 # variable to keep track of the current press to check for
       presses = []
@@ -130,6 +129,7 @@ def press_pattern(state,round,count,mapping,pattern,presses):
         print("next round\n")
         round += 1
         state = 1
+        time.sleep(0.5)
     else:
       print("incorrect press")
       presses = []
