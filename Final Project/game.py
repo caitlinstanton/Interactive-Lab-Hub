@@ -16,12 +16,11 @@ if __name__ == '__main__':
       # 4 -> WIN
       # 5 -> LOSE
 
-      order = [1]
+      order = [1,2,3]
+      print(order)
       wires = False
       keypad = False
       cardswipe = False
-
-      
 
       while True:
         current = time.perf_counter()
@@ -38,7 +37,7 @@ if __name__ == '__main__':
 
         elif state == 1:
           
-          if not wires:
+          while not wires:
             wires = connect()
             if current > end:
               print("RAN OUT OF TIME, UNCONNECTED")
