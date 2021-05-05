@@ -27,14 +27,24 @@ if __name__ == '__main__':
       pattern_round = 1
       pattern_count = 0
       presses = []
-      mapping = {}
       pattern = []
+      
+      mapping = {1:0x6f, 2:0x5f, 3:0x4f, 4:0x3f, 5:0x2f, 6:0x1f}
+
+      for i in mapping:
+        button = qwiic_button.QwiicButton(mapping[i])
+        button.set_debounce_time(500)
+        button.LED_off()
+        mapping[i] = button
+        if button.begin() == False:
+            print("\nThe Qwiic Button " + str(i) + " isn't connected to the system. Please check your connection", \
+                file=sys.stderr)
+            raise SystemExit
 
       cardswipe = False
 
       while True:
         current = time.perf_counter()
-        print(current)
         if state == 0:
           start = time.perf_counter()
           end = start + 90
@@ -44,14 +54,6 @@ if __name__ == '__main__':
           print(order)
           state = order[0]
           order.remove(state)
-
-          mapping = {1:0x6f, 2:0x5f, 3:0x4f, 4:0x3f, 5:0x2f, 6:0x1f}
-
-          for i in mapping:
-            button = qwiic_button.QwiicButton(mapping[i])
-            button.set_debounce_time(500)
-            button.LED_off()
-            mapping[i] = button
 
           for i in range(0,len(mapping)):
             n = random.randint(1,len(mapping))
