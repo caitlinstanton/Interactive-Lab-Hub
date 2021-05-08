@@ -209,21 +209,21 @@ if __name__ == '__main__':
           if first == 1:
             first_task = "1. wires"
           elif first == 2:
-            first_task = "2. keypad"
+            first_task = "1. keypad"
           elif first == 3:
-            first_task = "3. cardswipe"
+            first_task = "1. cardswipe"
 
           if second == 1:
-            second_task = "1. wires"
+            second_task = "2. wires"
           elif second == 2:
             second_task = "2. keypad"
           elif second == 3:
-            second_task = "3. cardswipe"
+            second_task = "2. cardswipe"
 
           if third == 1:
-            third_task = "1. wires"
+            third_task = "3. wires"
           elif third == 2:
-            third_task = "2. keypad"
+            third_task = "3. keypad"
           elif third == 3:
             third_task = "3. cardswipe"
             
