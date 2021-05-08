@@ -1,10 +1,14 @@
 import random
 import RPi.GPIO as GPIO
+import board
+import busio
+import adafruit_mpr121
 from wires import *
 import wires
 from keypad import *
 import keypad
-#import cardswipe
+from cardswipe import *
+import cardswipe
 
 if __name__ == '__main__':
     try:
@@ -17,7 +21,7 @@ if __name__ == '__main__':
       # 4 -> WIN
       # 5 -> LOSE
 
-      order = [1,2]
+      order = [1,2,3]
       print(order)
 
       wires = False
@@ -36,12 +40,20 @@ if __name__ == '__main__':
         button.set_debounce_time(500)
         button.LED_off()
         mapping[i] = button
-        if button.begin() == False:
-            print("\nThe Qwiic Button " + str(i) + " isn't connected to the system. Please check your connection", \
-                file=sys.stderr)
-            raise SystemExit
+
+      ready = False
+      while not ready:
+        for i in mapping:
+          button = mapping[i]
+          ready = button.begin()
 
       cardswipe = False
+      start_time = 0
+      end_time = 0
+      swipe_time_sec = 0
+      # Initialize connections
+      i2c = busio.I2C(board.SCL, board.SDA)
+      mpr121 = adafruit_mpr121.MPR121(i2c)
 
       while True:
         current = time.perf_counter()
@@ -108,7 +120,29 @@ if __name__ == '__main__':
               order.remove(state)
 
         elif state == 3:
-          state = 4
+          
+          while not cardswipe:
+            (cardswipe,tmp_start_time,tmp_end_time,tmp_swiped_time_sec) = swiped(mpr121,start_time,end_time,swipe_time_sec)
+            start_time = tmp_start_time
+            end_time = tmp_end_time
+            swipe_time_sec = tmp_swiped_time_sec
+            if current > end:
+              print("RAN OUT OF TIME, NOT SWIPED")
+              state = 5
+              break
+
+          if cardswipe:
+            if current > end:
+              print("RAN OUT OF TIME, SWIPED")
+              state = 5
+            elif not order and current <= end:
+              print("WOW")
+              state = 4
+            elif order:
+              print("NEXT STATE")
+              state = order[0]
+              order.remove(state)
+
         elif state == 4:
           print("WON")
           break
