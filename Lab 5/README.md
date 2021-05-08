@@ -45,15 +45,9 @@ D) [Reflect](#part-d)
  
 ### Part A
 ### Play with different sense-making algorithms.
-<<<<<<< HEAD
  
 Before you get started connect the RaspberryPi Camera V2. [The Pi hut has a great explanation on how to do that](https://thepihut.com/blogs/raspberry-pi-tutorials/16021420-how-to-install-use-the-raspberry-pi-camera).  
  
-=======
-
-Befor you get started connect the RaspberryPi Camera V2. [The Pi hut has a great explanation on how to do that](https://thepihut.com/blogs/raspberry-pi-tutorials/16021420-how-to-install-use-the-raspberry-pi-camera).  
-
->>>>>>> e0a734d7649efe943a7b1c0a1e21c48e68866709
 #### OpenCV
 A more traditional way to extract information out of images is provided with OpenCV. The RPI image provided to you comes with an optimized installation that can be accessed through python.
  
@@ -207,7 +201,6 @@ Now that you have experimented with one or more of these sense-making systems **
 > Since the focus of our interaction was to ensure people with low vision or those who are blind can enjoy their food without having to wonder what it is or if it fits their preferences, we retrofit the Raspberry Pi and PiCamera system to a glove. This glove could be waved over any surface with items on it to identify whether any of the items are cashews, craisins, and/or almonds. A display via Moba was available, but we also made sure to incorporate auditory cues via the Pi to verbally identify what tagged item was seen.
 >
 During the lecture, we mentioned questions to help characterize a material:
-<<<<<<< HEAD
 > * **What can you use *Cashewser* for?**
 > Cashewser is a visibility indication tool that can identify different ingredients in trailmix. (Particularly, cashews, almonds, and craisins)
 >
@@ -231,21 +224,3 @@ During the lecture, we mentioned questions to help characterize a material:
 >
 > * **Include a short video demonstrating the answers to these questions.**
 > Video is linked [here](https://www.youtube.com/watch?v=9gU5y1xZ5ng)
-=======
-* What can you use X for?
-* What is a good environment for X?
-* What is a bad environment for X?
-* When will X break?
-* When it breaks how will X break?
-* What are other properties/behaviors of X?
-* How does X feel?
-
-**Include a short video demonstrating the answers to these questions.**
-
-### Part 2.
-
-Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
-
-**Include a short video demonstrating the finished result.**
-
->>>>>>> e0a734d7649efe943a7b1c0a1e21c48e68866709
