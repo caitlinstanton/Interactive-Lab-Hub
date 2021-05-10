@@ -226,6 +226,9 @@ if __name__ == '__main__':
             third_task = "3. keypad"
           elif third == 3:
             third_task = "3. cardswipe"
+          print(first_task)
+          print(second_task)
+          print(third_task)
             
           order.remove(state)
           print(state)
@@ -259,18 +262,18 @@ if __name__ == '__main__':
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-            elif first_task == "2. keypad":
+            elif first_task == "1. keypad":
               if keypad:
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-            elif first_task == "3. cardswipe":
+            elif first_task == "1. cardswipe":
               if cardswipe:
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
             
-            if second_task == "1. wires":
+            if second_task == "2. wires":
               if wires:
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
@@ -280,18 +283,18 @@ if __name__ == '__main__':
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
-            elif second_task == "3. cardswipe":
+            elif second_task == "2. cardswipe":
               if cardswipe:
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
 
-            if third_task == "1. wires":
+            if third_task == "3. wires":
               if wires:
                 draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+90), third_task, font=font, fill=(255,0,0))
-            elif third_task == "2. keypad":
+            elif third_task == "3. keypad":
               if keypad:
                 draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
               else:
@@ -336,18 +339,18 @@ if __name__ == '__main__':
                   draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-              elif first_task == "2. keypad":
+              elif first_task == "1. keypad":
                 if keypad:
                   draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-              elif first_task == "3. cardswipe":
+              elif first_task == "1. cardswipe":
                 if cardswipe:
                   draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
               
-              if second_task == "1. wires":
+              if second_task == "2. wires":
                 if wires:
                   draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
                 else:
@@ -357,18 +360,18 @@ if __name__ == '__main__':
                   draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
-              elif second_task == "3. cardswipe":
+              elif second_task == "2. cardswipe":
                 if cardswipe:
                   draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
 
-              if third_task == "1. wires":
+              if third_task == "3. wires":
                 if wires:
                   draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+90), third_task, font=font, fill=(255,0,0))
-              elif third_task == "2. keypad":
+              elif third_task == "3. keypad":
                 if keypad:
                   draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
                 else:
@@ -420,18 +423,18 @@ if __name__ == '__main__':
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-            elif first_task == "2. keypad":
+            elif first_task == "1. keypad":
               if keypad:
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-            elif first_task == "3. cardswipe":
+            elif first_task == "1. cardswipe":
               if cardswipe:
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
             
-            if second_task == "1. wires":
+            if second_task == "2. wires":
               if wires:
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
@@ -441,18 +444,18 @@ if __name__ == '__main__':
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
-            elif second_task == "3. cardswipe":
+            elif second_task == "2. cardswipe":
               if cardswipe:
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
 
-            if third_task == "1. wires":
+            if third_task == "3. wires":
               if wires:
                 draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+90), third_task, font=font, fill=(255,0,0))
-            elif third_task == "2. keypad":
+            elif third_task == "3. keypad":
               if keypad:
                 draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
               else:
@@ -461,7 +464,7 @@ if __name__ == '__main__':
               if cardswipe:
                 draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
               else:
-                draw.text((x, y+90), third_task, font=font, fill=(255,0,0)) 
+                draw.text((x, y+90), third_task, font=font, fill=(255,0,0))
 
             disp.image(image,rotation)
 
@@ -515,18 +518,18 @@ if __name__ == '__main__':
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-            elif first_task == "2. keypad":
+            elif first_task == "1. keypad":
               if keypad:
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-            elif first_task == "3. cardswipe":
+            elif first_task == "1. cardswipe":
               if cardswipe:
                 draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
             
-            if second_task == "1. wires":
+            if second_task == "2. wires":
               if wires:
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
@@ -536,18 +539,18 @@ if __name__ == '__main__':
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
-            elif second_task == "3. cardswipe":
+            elif second_task == "2. cardswipe":
               if cardswipe:
                 draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
 
-            if third_task == "1. wires":
+            if third_task == "3. wires":
               if wires:
                 draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
               else:
                 draw.text((x, y+90), third_task, font=font, fill=(255,0,0))
-            elif third_task == "2. keypad":
+            elif third_task == "3. keypad":
               if keypad:
                 draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
               else:
@@ -594,18 +597,18 @@ if __name__ == '__main__':
                   draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-              elif first_task == "2. keypad":
+              elif first_task == "1. keypad":
                 if keypad:
                   draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
-              elif first_task == "3. cardswipe":
+              elif first_task == "1. cardswipe":
                 if cardswipe:
                   draw.text((x, y+60), first_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+60), first_task, font=font, fill=(255,0,0))
               
-              if second_task == "1. wires":
+              if second_task == "2. wires":
                 if wires:
                   draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
                 else:
@@ -615,18 +618,18 @@ if __name__ == '__main__':
                   draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
-              elif second_task == "3. cardswipe":
+              elif second_task == "2. cardswipe":
                 if cardswipe:
                   draw.text((x, y+75), second_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+75), second_task, font=font, fill=(255,0,0))
 
-              if third_task == "1. wires":
+              if third_task == "3. wires":
                 if wires:
                   draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
                 else:
                   draw.text((x, y+90), third_task, font=font, fill=(255,0,0))
-              elif third_task == "2. keypad":
+              elif third_task == "3. keypad":
                 if keypad:
                   draw.text((x, y+90), third_task, font=font, fill=(0,255,0))
                 else:
