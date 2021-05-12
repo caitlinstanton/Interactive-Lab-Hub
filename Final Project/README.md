@@ -94,8 +94,7 @@ By Priya Kattappurath, Caitlin Stanton, and Grace Tan
 >
 > ![game still works](./bash_still_functioning.png)
 >
-> #### Software
-([code](https://github.com/caitlinstanton/Interactive-Lab-Hub/blob/Spring2021/Final%20Project/game.py))
+> #### Software ([code](https://github.com/caitlinstanton/Interactive-Lab-Hub/blob/Spring2021/Final%20Project/game.py))
 > 
 > Our game involves multiple distinct states in order to execute different tasks and keep track of the user’s progress throughout the game. Below is a diagram of the FSM that we developed. There are seven different states, one of which is shown by the INIT arrow to ```state 0```. We implemented this FSM within ```game.py``` using conditional statements based on different values of the ```state``` variable within a ```while True``` loop. This is encased in a ```try except``` block to catch any errors. This was especially useful for the I/O errors that pop up due to the unreliable nature of QWIIC connections to the buttons and capacitive touch sensor.
 > 
@@ -154,25 +153,27 @@ By Priya Kattappurath, Caitlin Stanton, and Grace Tan
 >
 > ### Keypad Pattern
 > #### Hardware
->Need to set different i2c addresses for each (use I2C_scan to check and change_i2c)
-Install https://pypi.org/project/sparkfun-qwiic-i2c/ and https://pypi.org/project/sparkfun-qwiic-button/ 
-0x6f, 0x5f, 0x4f, 0x3f, <skipped 0x2f for green button>, 0x1f
-Accidentally changed wrong I2C address so had to call my_button = qwiic_button.QwiicButton(<I2C>) with an address (rather than empty parens, which defaults to 0x6f) so program would recognize button
-Original code: results shown below: ![dictionary error](./dict_error.png)
->
->Error that we solved: we had the i2c addresses in quotes, and was being read as a string instead of integers. Previous error (about dictionary) was because of this as well
->
->Python docs hard to find: https://qwiic-button-py.readthedocs.io/en/main/apiref.html and https://github.com/sparkfun/Qwiic_Button_Py 
->
 > ##### Parts List
 > - 6 LED Buttons
 > - 6 QWIIC Connectors
 > - Empty mochi ice cream container to mount buttons
 > ##### Setup
-> The 6 LED buttons are organized by alternating color for aesthetic effect. The grid of buttons are connected together using QWIIC connectors and mounted onto the frame of the game board. To connect to the Raspberry Pi, an intermediate QWIIC connector connects the button grid to the capacitive touch sensor (which is already QWIIC connected to the Raspberry Pi.)
+> The 6 LED buttons are organized by alternating color for aesthetic effect. The grid of buttons are connected together using QWIIC connectors and mounted onto the frame of the game board. To connect to the Raspberry Pi, an intermediate QWIIC connector connects the button grid to the capacitive touch sensor (which is already QWIIC connected to the Raspberry Pi). The libraries needed to communicate with these QWIIC buttons are [sparkfun-qwiic-i2c](https://pypi.org/project/sparkfun-qwiic-i2c/) and [sparkfun-qwiic-buttom](https://pypi.org/project/sparkfun-qwiic-button/), both of which were installed using ```pip```.
+>
+> Devices have specific addresses to communicate via I2C. Since all of the buttons shared the same default address of ```0x6f```, we had to change them to be six distinct addresses. This couldn’t be done with all six buttons connected to the Pi because the commands to change the I2C address would be confused by seeing multiple devices connected using the same address. One by one, each button was connected to the Pi using a QWIIC connector. We ran ```I2C_scan.py``` from lab 2 to check the I2C address of the button (even though it was always expected to be ```0x6f``` it didn’t hurt to check!). The [Github repository for the QWIIC buttons](https://github.com/sparkfun/Qwiic_Button_Py) and the [official Python documentation](https://qwiic-button-py.readthedocs.io/en/main/apiref.html) described the functions needed to change the button’s I2C address. These findings were compiled into ```change_i2c.py``` which initialized a QWIIC button object using the default I2C address and asked for user input to determine the new I2C address. In the case where one button had its address changed already, the line ```my_button = qwiic_button.QwiicButton()``` had to be changed to use that I2C address as a parameter (typecast as an integer, not a string). If the address was written as a string, the following error was thrown whenever the button object was referenced
+>
+> ![dictionary error](./dict_error.png)
+>
+After running this script on all six buttons, the I2C addresses were: ```0x6f```, ```0x5f```, ```0x4f```, ```0x3f```, ```0x2f```, and ```0x1f```.
+> 
 [picture of button grid]
+>
 > #### Software ([code](https://github.com/caitlinstanton/Interactive-Lab-Hub/blob/Spring2021/Final%20Project/simon.py))
+>
+> 
 > ![FSM for keypad](./keypadFSM.jpg)
+>
+>
 >
 > ### Display
 > ##### Parts List
@@ -210,3 +211,6 @@ Original code: results shown below: ![dictionary error](./dict_error.png)
 > Finally, we experimented with both in-person and virtual meetings. These meeting types allowed us to be flexible with our restricting schedules while we could work together on both hardware and software aspects of the project.
 >
 > ![team](./team.png)
+ 
+
+
