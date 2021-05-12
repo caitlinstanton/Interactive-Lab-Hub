@@ -168,12 +168,21 @@ After running this script on all six buttons, the I2C addresses were: ```0x6f```
 > 
 [picture of button grid]
 >
-> #### Software ([code](https://github.com/caitlinstanton/Interactive-Lab-Hub/blob/Spring2021/Final%20Project/simon.py))
+> #### Software ([code](https://github.com/caitlinstanton/Interactive-Lab-Hub/blob/Spring2021/Final%20Project/keypad.py))
 >
-> 
+> The action for this task is to press the pattern of buttons correctly. This pattern grows in length, starting by blinking the first button, then the first two buttons, and so on until a pattern of five buttons is blinked. We used an FSM to keep track of the user’s progress for each subset pattern, as well as the entire pattern, and a diagram of it can be seen below.
+>
 > ![FSM for keypad](./keypadFSM.jpg)
 >
+> Once the game-wide FSM from ```game.py``` has called ```press_pattern()``` from ```simon.py``` the keypad FSM goes to ```state 0```. This is where the initialization of the variables to keep track of the subset pattern the user is on (```round```) and the array of registered button presses (```presses```) occurs. 
 >
+> The FSM then immediately transitions to ```state 1``` where the button blinking happens. If ```round``` is equal to the length of the full pattern, then there’s no need to blink any more buttons because all rounds of the task has been completed; the FSM then moves to the done state ```state 4```. However, if there is more of the pattern to be repeated, the helper function ```blink_buttons()``` is called with the parameter ```round``` as an input. This helper function goes through the pattern of buttons (stored in ```pattern``` from the global variable in ```game.py```) and blinks the button mapped at the I2C address in the global dictionary from ```game.py``` that keeps track of which button has which I2C address. When all of the buttons of the subset pattern have been blinked, ```presses``` is set to an empty array and a local variable ```count``` is set to zero. This local variable keeps track of the user’s button press to compare to the element in ```pattern```.
+>
+> In ```state 2```, a for loop polls all six QWIIC buttons to see if the library function ```is_button_pressed()``` returns True. When this happens, the button value is added to ```pressed``` and the FSM transitions to ```state 3```. Otherwise the FSM will stay within ```state 2``` until a button is pressed.
+>
+> ```state 3``` is responsible for seeing if the currently pressed button matches the expected button in ```pattern```. If ```presses[count]``` (since ```count``` keeps track of the index of the press) is equal to ```pattern[count]``` the FSM can either continue with the current round and go to ```state 2``` or start the next round with a larger subset pattern in ```state 1```. The difference between these two state transitions is that the FSM will continue with the current round if ```count``` hasn’t reached the last index of the current round (equal to ```round - 1```), or move to the next round otherwise by incrementing ```round```. In the case of an incorrect press, the FSM moves to ```state 1``` but doesn’t change the value of ```round```; instead, the array ```presses``` is set to an empty array so the user has to start fresh with the current subset pattern.
+>
+> ```state 4``` is the done state. Nothing happens here, but the output of ```press_pattern()``` includes the state. Within ```game.py``` there’s a check to see if the returned ```state``` value is equal to 4, in which case ```keypad``` is set to True and the task has been completed.
 >
 > ### Display
 > ##### Parts List
@@ -212,5 +221,3 @@ After running this script on all six buttons, the I2C addresses were: ```0x6f```
 >
 > ![team](./team.png)
  
-
-
