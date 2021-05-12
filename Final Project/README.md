@@ -166,7 +166,7 @@ By Priya Kattappurath, Caitlin Stanton, and Grace Tan
 >
 After running this script on all six buttons, the I2C addresses were: ```0x6f```, ```0x5f```, ```0x4f```, ```0x3f```, ```0x2f```, and ```0x1f```.
 > 
-> ![button grid](./button_grid.png)
+> ![button grid](./button_grid.JPG)
 >
 > #### Software ([code](https://github.com/caitlinstanton/Interactive-Lab-Hub/blob/Spring2021/Final%20Project/keypad.py))
 >
