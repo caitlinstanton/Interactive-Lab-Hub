@@ -39,7 +39,7 @@ By Priya Kattappurath, Caitlin Stanton, and Grace Tan
 > #### Wires
 > In this task, wires are connected in a color-defined configuration in order to light up the respective LEDs. This is inspired by the “Fix Wiring” task in *Among Us*, which is essentially the same thing.
 >
-> ![wires](./images/among_us_wire.png)
+> ![wires](images/among_us_wire.png)
 > #### Card Swipe
 > In this task, the player swipes a conductive-fabric-wrapped card along a capacitive touch sensor for a certain amount of time to mimic the “Swipe Card” task. SImilar to the original task, if the user swipes too quickly or too slowly, they will need to repeat the task.
 >
